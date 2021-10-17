@@ -41,6 +41,10 @@ public class SocietyBackendApplication {
 			Users u1 = new Users("Tom","Kat","MALE", LocalDate.now(),"1234567890");
 			Auth a1 = new Auth("user1@mail.com", passwordEncoder.encode("1234"), List.of(role1) ,u1);
 			authRepo.save(a1);
+
+			Users u2 = new Users("Tom","Kat","MALE", LocalDate.now(),"1234567890");
+			Auth a2 = new Auth("user2@mail.com", passwordEncoder.encode("1234"), List.of(role5) ,u2);
+			authRepo.save(a2);
 		};
 	}
 
