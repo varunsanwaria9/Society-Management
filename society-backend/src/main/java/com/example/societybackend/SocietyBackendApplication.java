@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +25,10 @@ public class SocietyBackendApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(UserRepo userRepo, AuthRepo authRepo, RolesRepo rolesRepo){
+	CommandLineRunner runner(UserRepo userRepo,
+							 AuthRepo authRepo,
+							 RolesRepo rolesRepo,
+							 PasswordEncoder passwordEncoder){
 		return args -> {
 
 			Roles role1 = new Roles(Role.PERSON);
@@ -34,8 +39,13 @@ public class SocietyBackendApplication {
 			rolesRepo.saveAll(List.of(role1,role2,role3,role4,role5));
 
 			Users u1 = new Users("Tom","Kat","MALE", LocalDate.now(),"1234567890");
-			Auth a1 = new Auth("user1@mail.com","1234", List.of(role1) ,u1);
+			Auth a1 = new Auth("user1@mail.com", passwordEncoder.encode("1234"), List.of(role1) ,u1);
 			authRepo.save(a1);
 		};
+	}
+
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder();
 	}
 }
