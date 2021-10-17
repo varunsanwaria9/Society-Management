@@ -28,7 +28,11 @@ public class Users {
     public Users() {
     }
 
-    public Users(String first_name, String last_name, String gender, LocalDate dob, String phone) {
+    public Users(String first_name,
+                 String last_name,
+                 String gender,
+                 LocalDate dob,
+                 String phone) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
@@ -36,7 +40,12 @@ public class Users {
         this.phone = phone;
     }
 
-    public Users(String id, String first_name, String last_name, String gender, LocalDate dob, String phone) {
+    public Users(String id,
+                 String first_name,
+                 String last_name,
+                 String gender,
+                 LocalDate dob,
+                 String phone) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;

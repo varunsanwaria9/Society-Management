@@ -1,6 +1,11 @@
 package com.example.societybackend.databases.entities;
 
+import com.example.societybackend.databases.enums.Role;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Auth {
@@ -9,6 +14,8 @@ public class Auth {
     private String id;
     private String email;
     private String password;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Roles> roles = new ArrayList<>();
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "id")
@@ -17,17 +24,26 @@ public class Auth {
     public Auth() {
     }
 
-    public Auth(String email, String password, Users user) {
+    public Auth(String email,
+                String password,
+                List<Roles> roles,
+                Users user ) {
         this.email = email;
         this.password = password;
+        this.roles = roles;
         this.user = user;
     }
 
-    public Auth(String id, String email, String password, Users user) {
+    public Auth(String id,
+                String email,
+                String password,
+                List<Roles> roles,
+                Users user) {
         this.id = id;
-        this.email = email;
-        this.password = password;
         this.user = user;
+        this.email = email;
+        this.roles = roles;
+        this.password = password;
     }
 
     public String getId() {
@@ -54,6 +70,14 @@ public class Auth {
         this.password = password;
     }
 
+    public Collection<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Roles> roles) {
+        this.roles = roles;
+    }
+
     public Users getUser() {
         return user;
     }
@@ -68,6 +92,7 @@ public class Auth {
                 "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", roles=" + roles +
                 ", user=" + user +
                 '}';
     }
