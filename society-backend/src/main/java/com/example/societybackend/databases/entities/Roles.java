@@ -17,12 +17,12 @@ public class Roles {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     private String id;
-    private Role role;
+    private String role;
 
     public Roles() {
     }
 
-    public Roles(Role role) {
+    public Roles(String role) {
         this.role = role;
     }
 
@@ -34,11 +34,11 @@ public class Roles {
         this.id = id;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

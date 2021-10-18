@@ -5,23 +5,24 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.societybackend.databases.entities.Auth;
+import com.example.societybackend.databases.entities.Person;
 import com.example.societybackend.databases.entities.Roles;
+import com.example.societybackend.databases.enums.Role;
+import com.example.societybackend.databases.models.RegisterModel;
 import com.example.societybackend.databases.repos.AuthRepo;
+import com.example.societybackend.databases.repos.RolesRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.MimeTypeUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
@@ -35,6 +36,10 @@ public class AllController {
 
     @Autowired
     private AuthRepo authRepo;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RolesRepo rolesRepo;
 
     @GetMapping(path = "/refreshToken")
     public ResponseEntity<?> getRefreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -52,7 +57,7 @@ public class AllController {
                         .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
                         .withClaim("Roles",auth.getRoles().stream().map(roles -> {
-                            return roles.getRole().toString();
+                            return roles.getRole();
                         }).collect(Collectors.toList()))
                         .sign(algorithm);
                 Map<String,String> tokens = new HashMap<>();
@@ -75,5 +80,20 @@ public class AllController {
         else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping(path = "/addPerson")
+    public ResponseEntity<Auth> addPerson(@RequestBody RegisterModel registerModel){
+        Person p1 = new Person(registerModel.getFirst_name(),registerModel.getLast_name(),registerModel.getGender(),
+                registerModel.getDob(),registerModel.getPhone(),null,null);
+        List<Roles> r1 = new ArrayList<>();
+        for(Roles r:rolesRepo.findAll()){
+            if(r.getRole().toLowerCase().contains("person")){
+                r1.add(r);
+            }
+        }
+        Auth a1 = new Auth(registerModel.getEmail(),passwordEncoder.encode(registerModel.getPassword()),
+                r1,p1);
+        return new ResponseEntity<>(authRepo.save(a1),HttpStatus.CREATED);
     }
 }

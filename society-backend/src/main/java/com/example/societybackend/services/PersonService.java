@@ -33,7 +33,7 @@ public class PersonService implements UserDetailsService {
         if(auth.isEmpty()) throw new UsernameNotFoundException("User not Found!!");
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         auth.get().getRoles().forEach(roles -> {
-            authorities.add(new SimpleGrantedAuthority(roles.getRole().toString()));
+            authorities.add(new SimpleGrantedAuthority(roles.getRole()));
         });
         return new User(auth.get().getEmail(),auth.get().getPassword(),authorities);
     }

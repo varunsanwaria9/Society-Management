@@ -1,12 +1,10 @@
 package com.example.societybackend.databases.entities;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 public class Users {
@@ -21,8 +19,7 @@ public class Users {
     private String first_name;
     private String last_name;
     private String gender;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dob;
+    private String dob;
     private String phone;
 
     public Users() {
@@ -31,7 +28,7 @@ public class Users {
     public Users(String first_name,
                  String last_name,
                  String gender,
-                 LocalDate dob,
+                 String dob,
                  String phone) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -44,7 +41,7 @@ public class Users {
                  String first_name,
                  String last_name,
                  String gender,
-                 LocalDate dob,
+                 String dob,
                  String phone) {
         this.id = id;
         this.first_name = first_name;
@@ -86,11 +83,11 @@ public class Users {
         this.gender = gender;
     }
 
-    public LocalDate getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
