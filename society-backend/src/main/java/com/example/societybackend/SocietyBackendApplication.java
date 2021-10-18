@@ -1,10 +1,12 @@
 package com.example.societybackend;
 
 import com.example.societybackend.databases.entities.Auth;
+import com.example.societybackend.databases.entities.Person;
 import com.example.societybackend.databases.entities.Roles;
 import com.example.societybackend.databases.entities.Users;
 import com.example.societybackend.databases.enums.Role;
 import com.example.societybackend.databases.repos.AuthRepo;
+import com.example.societybackend.databases.repos.PersonRepo;
 import com.example.societybackend.databases.repos.RolesRepo;
 import com.example.societybackend.databases.repos.UserRepo;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +28,7 @@ public class SocietyBackendApplication {
 
 	@Bean
 	CommandLineRunner runner(UserRepo userRepo,
+							 PersonRepo personRepo,
 							 AuthRepo authRepo,
 							 RolesRepo rolesRepo,
 							 PasswordEncoder passwordEncoder){
@@ -38,11 +41,11 @@ public class SocietyBackendApplication {
 			Roles role5 = new Roles(Role.WATCHMAN);
 			rolesRepo.saveAll(List.of(role1,role2,role3,role4,role5));
 
-			Users u1 = new Users("Tom","Kat","MALE", LocalDate.now(),"1234567890");
+			Person u1 = new Person("Tom","Kat","MALE", LocalDate.now(),"1234567890","B203");
 			Auth a1 = new Auth("user1@mail.com", passwordEncoder.encode("1234"), List.of(role1) ,u1);
 			authRepo.save(a1);
 
-			Users u2 = new Users("Tom","Kat","MALE", LocalDate.now(),"1234567890");
+			Person u2 = new Person("Tom","Kat","MALE", LocalDate.now(),"1234567890","C302");
 			Auth a2 = new Auth("user2@mail.com", passwordEncoder.encode("1234"), List.of(role5) ,u2);
 			authRepo.save(a2);
 		};

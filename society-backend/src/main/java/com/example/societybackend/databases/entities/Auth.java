@@ -1,6 +1,5 @@
 package com.example.societybackend.databases.entities;
 
-import com.example.societybackend.databases.enums.Role;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class Auth {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "id")
-    private Users user;
+    private Person user;
 
     public Auth() {
     }
@@ -27,7 +26,7 @@ public class Auth {
     public Auth(String email,
                 String password,
                 List<Roles> roles,
-                Users user ) {
+                Person user ) {
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -38,7 +37,7 @@ public class Auth {
                 String email,
                 String password,
                 List<Roles> roles,
-                Users user) {
+                Person user) {
         this.id = id;
         this.user = user;
         this.email = email;
@@ -78,11 +77,11 @@ public class Auth {
         this.roles = roles;
     }
 
-    public Users getUser() {
+    public Person getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(Person user) {
         this.user = user;
     }
 
