@@ -1,7 +1,6 @@
 package com.example.societybackend;
 
 import com.example.societybackend.databases.entities.*;
-import com.example.societybackend.databases.enums.Role;
 import com.example.societybackend.databases.enums.VehicleType;
 import com.example.societybackend.databases.repos.AuthRepo;
 import com.example.societybackend.databases.repos.PersonRepo;
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
@@ -40,13 +38,10 @@ public class SocietyBackendApplication {
 			rolesRepo.saveAll(List.of(role1,role2,role3,role4,role5));
 
 			Vehicle v1p1 = new Vehicle("XX 21 AZ 2131", VehicleType.FOURWHEELER);
-			Person u1 = new Person("Tom","Kat","MALE", "12/11/2011","1234567890","B203",List.of(v1p1));
-			Auth a1 = new Auth("user1@mail.com", passwordEncoder.encode("1234"), List.of(role1) ,u1);
-			authRepo.save(a1);
-
-			Person u2 = new Person("Tom","Kat","MALE", "21/04/2011","1234567890","C302",null);
-			Auth a2 = new Auth("user2@mail.com", passwordEncoder.encode("1234"), List.of(role5) ,u2);
-			authRepo.save(a2);
+			Auth a1 = new Auth("user1@mail.com",passwordEncoder.encode("1234"),List.of(role1));
+//			authRepo.save(a1);
+			Person p = new Person("Tom","Kat","MALE","20/2/2003","12092382","B201",List.of(v1p1),a1);
+			personRepo.save(p);
 		};
 	}
 

@@ -2,6 +2,9 @@ package com.example.societybackend.databases.entities;
 
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,36 +13,33 @@ import java.util.List;
 public class Auth {
 
     @Id
-    private String id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
+	private String id;
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Roles> roles = new ArrayList<>();
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @MapsId
-    @JoinColumn(name = "id")
-    private Person user;
 
     public Auth() {
     }
 
     public Auth(String email,
                 String password,
-                List<Roles> roles,
-                Person user ) {
+                List<Roles> roles){
         this.email = email;
         this.password = password;
         this.roles = roles;
-        this.user = user;
     }
 
     public Auth(String id,
                 String email,
                 String password,
-                List<Roles> roles,
-                Person user) {
+                List<Roles> roles){
         this.id = id;
-        this.user = user;
         this.email = email;
         this.roles = roles;
         this.password = password;
@@ -77,14 +77,6 @@ public class Auth {
         this.roles = roles;
     }
 
-    public Person getUser() {
-        return user;
-    }
-
-    public void setUser(Person user) {
-        this.user = user;
-    }
-
     @Override
     public String toString() {
         return "Auth{" +
@@ -92,7 +84,6 @@ public class Auth {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
-                ", user=" + user +
                 '}';
     }
 }

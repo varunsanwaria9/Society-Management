@@ -1,18 +1,14 @@
 package com.example.societybackend.controller;
 
-import com.example.societybackend.databases.entities.Auth;
-import com.example.societybackend.databases.entities.Person;
-import com.example.societybackend.databases.entities.Users;
+import com.example.societybackend.databases.entities.*;
 import com.example.societybackend.databases.repos.AuthRepo;
 import com.example.societybackend.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/persons")
@@ -28,9 +24,18 @@ public class PersonController {
         return personService.allUsers();
     }
 
-    @GetMapping(path = "/roles")
-    public ResponseEntity<List<Auth>> allRoles() {
-        return new ResponseEntity<>(authRepo.findAll(), HttpStatus.OK);
-    }
+	@GetMapping(path = "/id/{id}")
+	public ResponseEntity<Optional<Person>> personById(@PathVariable String id){
+		return new ResponseEntity<>(personService.getById(id),HttpStatus.OK);
+	}
 
+	@PutMapping(path = "/addVehicle/{id}")
+	public ResponseEntity<Person> addVehicle(@RequestBody Vehicle vehicle,@PathVariable String id){
+		Person person = personService.getById(id).get();
+		List<Vehicle> vehicles = person.getVehicles();
+		vehicles.add(vehicle);
+		return new ResponseEntity<>(person,HttpStatus.OK);
+	}
 }
+
+

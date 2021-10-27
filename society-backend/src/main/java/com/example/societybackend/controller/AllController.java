@@ -7,9 +7,9 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.societybackend.databases.entities.Auth;
 import com.example.societybackend.databases.entities.Person;
 import com.example.societybackend.databases.entities.Roles;
-import com.example.societybackend.databases.enums.Role;
 import com.example.societybackend.databases.models.RegisterModel;
 import com.example.societybackend.databases.repos.AuthRepo;
+import com.example.societybackend.databases.repos.PersonRepo;
 import com.example.societybackend.databases.repos.RolesRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(path = "/api")
 public class AllController {
 
+    @Autowired
+    private PersonRepo personRepo;
     @Autowired
     private AuthRepo authRepo;
     @Autowired
@@ -83,17 +85,16 @@ public class AllController {
     }
 
     @PostMapping(path = "/addPerson")
-    public ResponseEntity<Auth> addPerson(@RequestBody RegisterModel registerModel){
-        Person p1 = new Person(registerModel.getFirst_name(),registerModel.getLast_name(),registerModel.getGender(),
-                registerModel.getDob(),registerModel.getPhone(),null,null);
+    public ResponseEntity<Person> addPerson(@RequestBody RegisterModel registerModel){
         List<Roles> r1 = new ArrayList<>();
         for(Roles r:rolesRepo.findAll()){
             if(r.getRole().toLowerCase().contains("person")){
                 r1.add(r);
             }
         }
-        Auth a1 = new Auth(registerModel.getEmail(),passwordEncoder.encode(registerModel.getPassword()),
-                r1,p1);
-        return new ResponseEntity<>(authRepo.save(a1),HttpStatus.CREATED);
+        Auth a1 = new Auth(registerModel.getEmail(),passwordEncoder.encode(registerModel.getPassword()), r1);
+        Person p = new Person(registerModel.getFirst_name(),registerModel.getLast_name(),registerModel.getGender(),
+                registerModel.getDob(),registerModel.getPhone(),null,null,a1);
+        return new ResponseEntity<>(personRepo.save(p),HttpStatus.CREATED);
     }
 }

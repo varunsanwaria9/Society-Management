@@ -2,10 +2,8 @@ package com.example.societybackend.services;
 
 import com.example.societybackend.databases.entities.Auth;
 import com.example.societybackend.databases.entities.Person;
-import com.example.societybackend.databases.entities.Users;
 import com.example.societybackend.databases.repos.AuthRepo;
 import com.example.societybackend.databases.repos.PersonRepo;
-import com.example.societybackend.databases.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -38,7 +36,18 @@ public class PersonService implements UserDetailsService {
         return new User(auth.get().getEmail(),auth.get().getPassword(),authorities);
     }
 
+	public Person addUser(Person person){
+		return personRepo.save(person);
+	}
     public List<Person> allUsers(){
         return personRepo.findAll();
     }
+
+	public Optional<Person> getById(String id){
+		return personRepo.findById(id);
+	}
+
+	public Person updatePerson(Person person){
+		return personRepo.save(person);
+	}
 }

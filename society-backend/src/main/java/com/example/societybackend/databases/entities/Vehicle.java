@@ -33,7 +33,7 @@ public class Vehicle {
 
     public Vehicle(String id, String reg_no, VehicleType type) {
         this.id = id;
-        this.reg_no = reg_no;
-        this.type = type;
-    }
+        this.reg_no = reg_no; 
+		this.type = type;
+	}
 }
