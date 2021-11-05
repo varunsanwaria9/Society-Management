@@ -86,15 +86,11 @@ public class AllController {
 
     @PostMapping(path = "/addPerson")
     public ResponseEntity<Person> addPerson(@RequestBody RegisterModel registerModel){
-        List<Roles> r1 = new ArrayList<>();
-        for(Roles r:rolesRepo.findAll()){
-            if(r.getRole().toLowerCase().contains("person")){
-                r1.add(r);
-            }
-        }
-        Auth a1 = new Auth(registerModel.getEmail(),passwordEncoder.encode(registerModel.getPassword()), r1);
-        Person p = new Person(registerModel.getFirst_name(),registerModel.getLast_name(),registerModel.getGender(),
-                registerModel.getDob(),registerModel.getPhone(),null,null,a1);
-        return new ResponseEntity<>(personRepo.save(p),HttpStatus.CREATED);
+        Optional<Roles> role = rolesRepo.findByRole("PERSON");
+        if(role.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        Auth auth = new Auth(registerModel.getEmail(),passwordEncoder.encode(registerModel.getPassword()),List.of(role.get()));
+        Person person = new Person(registerModel.getFirst_name(),registerModel.getLast_name(), registerModel.getGender(),
+                registerModel.getPhone(),registerModel.getDob(),null,List.of(),auth);
+        return new ResponseEntity<>(personRepo.save(person),HttpStatus.CREATED);
     }
 }

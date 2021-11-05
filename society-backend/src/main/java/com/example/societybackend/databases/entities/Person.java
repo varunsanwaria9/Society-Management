@@ -1,61 +1,79 @@
 package com.example.societybackend.databases.entities;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
+
 
 @Entity 
 @Getter 
 @Setter 
 @ToString
-public class Person extends Users{
+public class Person{
 
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    private String id;
+    private String first_name;
+    private String last_name;
+    private String gender;
+    private String phone;
+    private String dob;
     private String flatNo;
-    @OneToMany(targetEntity = Vehicle.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_vehicles",referencedColumnName = "id")
-    private List<Vehicle> vehicles = new ArrayList<>();
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id",referencedColumnName = "id")
-	private Auth auth;	
+
+    @Column
+    @ElementCollection(targetClass = String.class)
+    private List<String> vehicles;
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "auth_id")
+    private Auth auth;
 
     public Person() {
     }
 
+
     public Person(String first_name,
                   String last_name,
                   String gender,
-                  String dob,
                   String phone,
+                  String dob,
                   String flatNo,
-                  List<Vehicle> vehicles,
-				  Auth auth) {
-        super(first_name, last_name, gender, dob, phone);
+                  List<String> vehicles,
+                  Auth auth) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.gender = gender;
+        this.phone = phone;
+        this.dob = dob;
         this.flatNo = flatNo;
         this.vehicles = vehicles;
-		this.auth = auth;
+        this.auth = auth;
     }
 
     public Person(String id,
                   String first_name,
                   String last_name,
                   String gender,
-                  String dob,
                   String phone,
+                  String dob,
                   String flatNo,
-                  List<Vehicle> vehicles,
-				  Auth auth) {
-        super(id, first_name, last_name, gender, dob, phone);
+                  List<String> vehicles,
+                  Auth auth) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.gender = gender;
+        this.phone = phone;
+        this.dob = dob;
         this.flatNo = flatNo;
         this.vehicles = vehicles;
-		this.auth = auth;
+        this.auth = auth;
     }
 }

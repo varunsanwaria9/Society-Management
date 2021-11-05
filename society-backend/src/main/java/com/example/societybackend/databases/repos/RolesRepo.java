@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface RolesRepo extends JpaRepository<Roles,String> {
+    Optional<Roles> findByRole(String person);
 }

@@ -29,13 +29,6 @@ public class PersonController {
 		return new ResponseEntity<>(personService.getById(id),HttpStatus.OK);
 	}
 
-	@PutMapping(path = "/addVehicle/{id}")
-	public ResponseEntity<Person> addVehicle(@RequestBody Vehicle vehicle,@PathVariable String id){
-		Person person = personService.getById(id).get();
-		List<Vehicle> vehicles = person.getVehicles();
-		vehicles.add(vehicle);
-		return new ResponseEntity<>(person,HttpStatus.OK);
-	}
 }
 
 

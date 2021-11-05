@@ -5,7 +5,7 @@ import com.example.societybackend.databases.enums.VehicleType;
 import com.example.societybackend.databases.repos.AuthRepo;
 import com.example.societybackend.databases.repos.PersonRepo;
 import com.example.societybackend.databases.repos.RolesRepo;
-import com.example.societybackend.databases.repos.UserRepo;
+import com.example.societybackend.databases.repos.VehicleRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,10 +23,10 @@ public class SocietyBackendApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(UserRepo userRepo,
-							 PersonRepo personRepo,
+	CommandLineRunner runner(PersonRepo personRepo,
 							 AuthRepo authRepo,
 							 RolesRepo rolesRepo,
+							 VehicleRepo vehicleRepo,
 							 PasswordEncoder passwordEncoder){
 		return args -> {
 
@@ -37,11 +37,12 @@ public class SocietyBackendApplication {
 			Roles role5 = new Roles("WATCHMAN");
 			rolesRepo.saveAll(List.of(role1,role2,role3,role4,role5));
 
-			Vehicle v1p1 = new Vehicle("XX 21 AZ 2131", VehicleType.FOURWHEELER);
-			Auth a1 = new Auth("user1@mail.com",passwordEncoder.encode("1234"),List.of(role1));
-//			authRepo.save(a1);
-			Person p = new Person("Tom","Kat","MALE","20/2/2003","12092382","B201",List.of(v1p1),a1);
-			personRepo.save(p);
+			Vehicle v1p1 = vehicleRepo.save(new Vehicle("XY 82 1921", VehicleType.TWOWHEELER));
+			Auth ap1 = new Auth("user1@mail.com", passwordEncoder.encode("1234"), List.of(role1));
+//			authRepo.save(ap1);
+			Person p1 = new Person("Tom","Jerry","MALE","12920398234",
+					"21/08/2002","X21", List.of(v1p1.getId()), ap1);
+			personRepo.save(p1);
 		};
 	}
 
