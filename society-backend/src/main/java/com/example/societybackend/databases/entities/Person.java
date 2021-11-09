@@ -28,8 +28,8 @@ public class Person{
     private String flatNo;
 
     @Column
-    @ElementCollection(targetClass = String.class)
-    private List<String> vehicles;
+    @ElementCollection(targetClass = Vehicle.class)
+    private List<Vehicle> vehicles;
 
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "auth_id")
@@ -45,7 +45,7 @@ public class Person{
                   String phone,
                   String dob,
                   String flatNo,
-                  List<String> vehicles,
+                  List<Vehicle> vehicles,
                   Auth auth) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -64,7 +64,7 @@ public class Person{
                   String phone,
                   String dob,
                   String flatNo,
-                  List<String> vehicles,
+                  List<Vehicle> vehicles,
                   Auth auth) {
         this.id = id;
         this.first_name = first_name;

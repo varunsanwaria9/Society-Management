@@ -41,7 +41,7 @@ public class SocietyBackendApplication {
 			Auth ap1 = new Auth("user1@mail.com", passwordEncoder.encode("1234"), List.of(role1));
 //			authRepo.save(ap1);
 			Person p1 = new Person("Tom","Jerry","MALE","12920398234",
-					"21/08/2002","X21", List.of(v1p1.getId()), ap1);
+					"21/08/2002","X21", List.of(v1p1), ap1);
 			personRepo.save(p1);
 		};
 	}
