@@ -1,8 +1,10 @@
 package com.example.societybackend;
 
 import com.example.societybackend.databases.entities.*;
+import com.example.societybackend.databases.enums.Helper;
 import com.example.societybackend.databases.enums.VehicleType;
 import com.example.societybackend.databases.repos.AuthRepo;
+import com.example.societybackend.databases.repos.HelperRepo;
 import com.example.societybackend.databases.repos.PersonRepo;
 import com.example.societybackend.databases.repos.RolesRepo;
 import com.example.societybackend.databases.repos.VehicleRepo;
@@ -27,6 +29,7 @@ public class SocietyBackendApplication {
 							 AuthRepo authRepo,
 							 RolesRepo rolesRepo,
 							 VehicleRepo vehicleRepo,
+							 HelperRepo helperRepo,
 							 PasswordEncoder passwordEncoder){
 		return args -> {
 
@@ -39,10 +42,19 @@ public class SocietyBackendApplication {
 
 			Vehicle v1p1 = vehicleRepo.save(new Vehicle("XY 82 1921", VehicleType.TWOWHEELER));
 			Auth ap1 = new Auth("user1@mail.com", passwordEncoder.encode("1234"), List.of(role1));
-//			authRepo.save(ap1);
-			Person p1 = new Person("Tom","Jerry","MALE","12920398234",
-					"21/08/2002","X21", List.of(v1p1), ap1);
+			Person p1 = new Person("Tom","Jerry","MALE","12920398234","21/08/2002","X21",List.of(v1p1), ap1);
 			personRepo.save(p1);
+
+			Auth ap2 = new Auth("admin1@mail.com",passwordEncoder.encode("1234"),List.of(role1,role2));
+			Person p2 = new Person("Admin","Here","MALE","3231831121","31/09/2000","P80",List.of(),ap2);
+			personRepo.save(p2);
+
+			Helpers h1 = new Helpers("Gangu","Tai",List.of("P80"),Helper.MAID);
+			Helpers h2 = new Helpers("Rajesh","Sharma",List.of("X21"),Helper.DRIVER);
+			Helpers h3 = new Helpers("Ram","Singh",List.of("P80","X21"),Helper.CLEANER);
+			helperRepo.saveAll(List.of(h1,h2,h3));
+		
+			System.out.println("CommandLineRunner executed");
 		};
 	}
 
