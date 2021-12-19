@@ -1,0 +1,101 @@
+Url used: https://dbdiagram.io/d
+
+Table auth{
+  id String [pk]
+  Email String
+  Password String
+  Role String
+}
+
+Table residents{
+  id String [pk]
+  first_name String
+  last_name String
+  dob date
+  gender char
+  flat_no String
+  auth_details String [ref: > auth.id]
+  vehicles String [ref: > vehicle.id]
+}
+
+Table vehicle{
+  id String [pk]
+  vehicle_number String
+  vehicle_type String
+  parking_no String
+}
+
+Table admin{
+  id String [pk]
+  first_name String
+  last_name String
+  dob String
+  gender String
+  address String
+  auth_details String [ref: > auth.id]
+}
+
+Table supervisor{
+  id String [pk]
+  first_name String
+  last_name String
+  dob String
+  gender String
+  address String
+  auth_details String [ref: > auth.id]
+}
+
+Table watchmen{
+  id String [pk]
+  first_name String
+  last_name String
+  dob String
+  gender String
+  address String
+  auth_details String [ref: > auth.id]
+}
+
+Table visitors{
+  id String [pk]
+  first_name String 
+  last_name String
+  number_of_persons int 
+  address String
+  vehicle String [ref: > vehicle.id]
+  resident_info String [ref: > residents.id]
+  in_time datetime
+  out_time datetime
+  entry_from String [ref: > watchmen.id]
+}
+
+Table helpers{
+  id String [pk]
+  first_name String
+  last_name String
+  gender String
+  address String
+  flat_no String [ref: > residents.flat_no]
+}
+
+Table workers{
+  id String [pk]
+  first_name String
+  last_name String
+  gender String
+  address String
+}
+
+Table bills {
+  id String [pk]
+  reason String
+  amount String
+  bill_Status String
+  resident_info String [ref: > residents.flat_no]
+}
+
+Table issues{
+  id String [pk]
+  issue_name String
+  residence_no String [ref: > residents.flat_no]
+  issue_status String
+}
