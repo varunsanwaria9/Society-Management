@@ -36,8 +36,4 @@ public class AdminController{
 		return new ResponseEntity<>(helper.get(),HttpStatus.OK);
 	}	
 
-	@PostMapping(path = "/helperAdd")
-	public ResponseEntity<Helpers> addHelper(@RequestBody Helpers helper){
-		return new ResponseEntity<>(adminService.addHelper(helper),HttpStatus.CREATED);
-	}
 }

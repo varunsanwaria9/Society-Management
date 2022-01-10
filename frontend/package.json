@@ -12,6 +12,7 @@
 		"electron-start": "concurrently \"cross-env BROWSER=none npm run dev \" \"wait-on http://localhost:3000 && electron . \""
 	},
 	"dependencies": {
+		"axios": "^0.24.0",
 		"concurrently": "^6.3.0",
 		"cross-env": "^7.0.3",
 		"electron": "^15.3.1",
