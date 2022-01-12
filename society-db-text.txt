@@ -1,101 +1,141 @@
-Url used: https://dbdiagram.io/d
+Url: https://dbdiagram.io/d
+
+Table towers{
+  tower_id int [pk]
+  tower_name String
+}
+
+Table residences{
+  residences_id int [pk]
+  floor_no int 
+  flat_no int
+  tower_ref int [ref: > towers.tower_id]
+}
+
 
 Table auth{
-  id String [pk]
-  Email String
-  Password String
-  Role String
+  auth_id int [pk]
+  email String
+  password String
+  roles user_roles
 }
 
-Table residents{
-  id String [pk]
+Table users{
+  user_id int [pk]
   first_name String
   last_name String
-  dob date
-  gender char
-  flat_no String
-  auth_details String [ref: > auth.id]
-  vehicles String [ref: > vehicle.id]
+  gender genders
+  phone_no String
+  residence_details int [ref: > residences.residences_id]
+  auth_details int [ref: > auth.auth_id]  
+  parking_used int [ref: > parkings.parking_id]
 }
 
-Table vehicle{
-  id String [pk]
-  vehicle_number String
-  vehicle_type String
-  parking_no String
-}
-
-Table admin{
-  id String [pk]
-  first_name String
-  last_name String
-  dob String
-  gender String
-  address String
-  auth_details String [ref: > auth.id]
-}
-
-Table supervisor{
-  id String [pk]
-  first_name String
-  last_name String
-  dob String
-  gender String
-  address String
-  auth_details String [ref: > auth.id]
-}
-
-Table watchmen{
-  id String [pk]
-  first_name String
-  last_name String
-  dob String
-  gender String
-  address String
-  auth_details String [ref: > auth.id]
-}
-
-Table visitors{
-  id String [pk]
-  first_name String 
-  last_name String
-  number_of_persons int 
-  address String
-  vehicle String [ref: > vehicle.id]
-  resident_info String [ref: > residents.id]
-  in_time datetime
-  out_time datetime
-  entry_from String [ref: > watchmen.id]
-}
-
-Table helpers{
-  id String [pk]
-  first_name String
-  last_name String
-  gender String
-  address String
-  flat_no String [ref: > residents.flat_no]
-}
-
-Table workers{
-  id String [pk]
-  first_name String
-  last_name String
-  gender String
-  address String
-}
-
-Table bills {
-  id String [pk]
-  reason String
-  amount String
-  bill_Status String
-  resident_info String [ref: > residents.flat_no]
+Table parkings{
+  parking_id int [pk]
+  parking_no int
+  vehicle_no String
+  vehicle_type vehicleType
 }
 
 Table issues{
-  id String [pk]
+  issue_id int [pk]
   issue_name String
-  residence_no String [ref: > residents.flat_no]
-  issue_status String
+  raised_by int [ref: > users.user_id]
+  issue_stage issueStage
+}
+
+Table admin{
+  admin_id int [pk]
+  first_name String
+  last_name String
+  gender genders
+  phone_no String
+  address String
+  auth_details int [ref: > auth.auth_id]
+}
+
+Table manager{
+  manager_id int [pk]
+  first_name String
+  last_name String
+  gender genders
+  phone_no String
+  address String
+  auth_details int [ref: > auth.auth_id]
+}
+
+Table watchmen{
+  watchmen_id int [pk]
+  first_name String
+  last_name String
+  gender genders
+  phone_no String
+  address String
+  auth_details int [ref: > auth.auth_id]
+  guards_at int [ref: > towers.tower_id]
+}
+
+Table visitors{
+  visitor_id int [pk]
+  names String
+  parking_used int [ref: > parkings.parking_id]
+  residence_visited int [ref: > residences.residences_id]
+}
+
+Table residence_helper{
+  res_helper_id int [pk]
+  first_name String
+  last_name String
+  gender genders
+  address String
+  residences_working int [ref: > residences.residences_id]
+}
+Table society_workers{
+  soc_worker_id int [pk]
+  first_name String
+  last_name String
+  gender genders
+  address String
+  tower_working int [ref: > towers.tower_id]
+}
+
+Table bills{
+  bill_id int [pk]
+  bill_for String
+  amount long
+  payee int [ref: > residences.residences_id] 
+  status billStage
+  paid_on datetime
+}
+// -----------------------
+
+Enum user_roles{
+  residents
+  supervisior
+  watchmen
+  manager
+}
+
+Enum genders{
+  MALE
+  FEMALE
+  OTHERS
+}
+
+Enum vehicleType{
+  TWO_WHEELER
+  FOUR_WHEELER
+  OTHERS
+}
+
+Enum issueStage{
+  GENERATED
+  SOLVED
+  RESOLVING
+}
+
+Enum billStage{
+  GENERATED
+  PAID
 }
