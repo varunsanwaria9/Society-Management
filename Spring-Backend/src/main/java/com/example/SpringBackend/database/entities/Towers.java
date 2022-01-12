@@ -9,12 +9,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class Towers {
     
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private String tower_id;
+    @GeneratedValue
+    private int tower_id;
     private String tower_name;
 
 
@@ -24,16 +20,16 @@ public class Towers {
     public Towers(String tower_name) {
         this.tower_name = tower_name;
     }
-    public Towers(String tower_id, String tower_name) {
+    public Towers(int tower_id, String tower_name) {
         this.tower_id = tower_id;
         this.tower_name = tower_name;
     }
 
-    public String getTower_id() {
+    public int getTower_id() {
         return this.tower_id;
     }
 
-    public void setTower_id(String tower_id) {
+    public void setTower_id(int tower_id) {
         this.tower_id = tower_id;
     }
 
