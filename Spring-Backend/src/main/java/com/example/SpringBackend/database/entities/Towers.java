@@ -3,7 +3,6 @@ package com.example.SpringBackend.database.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Towers {
@@ -12,7 +11,6 @@ public class Towers {
     @GeneratedValue
     private int tower_id;
     private String tower_name;
-
 
     public Towers() {
     }
