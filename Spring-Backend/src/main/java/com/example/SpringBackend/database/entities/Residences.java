@@ -1,5 +1,7 @@
 package com.example.SpringBackend.database.entities;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,23 +13,29 @@ public class Residences{
     private int floor_no;
     private int flat_no;
     private int tower_ref;
+    @Column
+    @ElementCollection(targetClass = Parkings.class)
+    private List<Parkings> parkings;
     
     public Residences() {
     }
 
-    public Residences(int floor_no, int flat_no, int tower_ref) {
+
+    public Residences(int floor_no, int flat_no, int tower_ref, List<Parkings> parkings) {
         this.floor_no = floor_no;
         this.flat_no = flat_no;
         this.tower_ref = tower_ref;
+        this.parkings = parkings;
     }
-    
-    public Residences(int residence_id, int floor_no, int flat_no, int tower_ref) {
+
+    public Residences(int residence_id, int floor_no, int flat_no, int tower_ref, List<Parkings> parkings) {
         this.residence_id = residence_id;
         this.floor_no = floor_no;
         this.flat_no = flat_no;
         this.tower_ref = tower_ref;
+        this.parkings = parkings;
     }
-
+ 
 
     public int getResidence_id() {
         return this.residence_id;
@@ -61,6 +69,14 @@ public class Residences{
         this.tower_ref = tower_ref;
     }
 
+    public List<Parkings> getParkings() {
+        return this.parkings;
+    }
+
+    public void setParkings(List<Parkings> parkings) {
+        this.parkings = parkings;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -68,7 +84,8 @@ public class Residences{
             ", floor_no='" + getFloor_no() + "'" +
             ", flat_no='" + getFlat_no() + "'" +
             ", tower_ref='" + getTower_ref() + "'" +
+            ", parkings='" + getParkings() + "'" +
             "}";
     }
-    
+
 }
