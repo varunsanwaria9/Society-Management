@@ -19,7 +19,8 @@ public class SpringBackendApplication {
 
 	@Bean
 	CommandLineRunner runner(TowerRepo towerRepo,
-			ResidenceRepo residenceRepo) {
+			ResidenceRepo residenceRepo,
+			ParkingRepo parkingRepo) {
 		
 		return args -> {
 			Towers t1 = new Towers("Ruby");
@@ -39,6 +40,11 @@ public class SpringBackendApplication {
 			Residences r3 = new Residences(1,102,t3.getTower_id());
 			Residences r4 = new Residences(1,102,t4.getTower_id());
 			residenceRepo.saveAll(List.of(r1, r2, r3, r4));
+
+			Parkings p1 = new Parkings("R1","KA-01-HH-1234","Car",t1.getTower_id());
+			Parkings p2 = new Parkings("T2","KA-01-HH-9999","Car",t4.getTower_id());
+			Parkings p3 = new Parkings("E3","KA-01-HH-7777","Car",t3.getTower_id());
+			parkingRepo.saveAll(List.of(p1, p2, p3));
 
 			System.out.println("Command Line Executed");
 		};
