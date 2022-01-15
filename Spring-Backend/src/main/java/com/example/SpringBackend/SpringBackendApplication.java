@@ -24,7 +24,8 @@ public class SpringBackendApplication {
 			ResidenceRepo residenceRepo,
 			ParkingRepo parkingRepo,
 			UserRepo userRepo,
-			IssueRepo issueRepo) {
+			IssueRepo issueRepo,
+			Society_AuthRepo society_AuthRepo) {
 		
 		return args -> {
 			Towers t1 = new Towers("Ruby");
@@ -60,6 +61,10 @@ public class SpringBackendApplication {
 			Issues issue2 = new Issues("Smell from drainage system",new Date().toString(),u2.getId(),"Resolving");
 			Issues issue3 = new Issues("No proper waste pickup from house",new Date().toString(),u2.getId(),"Generated");
 			issueRepo.saveAll(List.of(issue1,issue2,issue3));
+
+			Society_Auth sa1 = new Society_Auth();
+			Society_Auth sa2 = new Society_Auth();
+			society_AuthRepo.saveAll(List.of(sa1,sa2));
 
 			System.out.println("Command Line Executed");
 		};
