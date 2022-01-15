@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.SpringBackend.database.entities.*;
-import com.example.SpringBackend.database.enums.*;
 import com.example.SpringBackend.database.repos.*;
 
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +24,7 @@ public class SpringBackendApplication {
 			ParkingRepo parkingRepo,
 			UserRepo userRepo,
 			IssueRepo issueRepo,
+			AuthRepo authRepo,
 			Society_AuthRepo society_AuthRepo) {
 		
 		return args -> {
@@ -51,10 +51,16 @@ public class SpringBackendApplication {
 			Residences r4 = new Residences(1,102,t4.getTower_id(),List.of(p2));
 			residenceRepo.saveAll(List.of(r1, r2, r3, r4));
 
-			Users u1 = new Users("John", "Doe", "MALE","483284293",r1.getResidence_id(),0);
-			Users u2 = new Users("Jack","Willow","MALE","38423945",r3.getResidence_id(),0);
-			Users u3 = new Users("Alyssa","Healy","FEMALE","4290348230",r4.getResidence_id(),0);
-			Users u4 = new Users("Mitchell","Starc","MALE","4523948212",r4.getResidence_id(),0);
+			Auth a1 = new Auth("john@mail.com","1234","RESIDENT");
+			Auth a2 = new Auth("jack@mail.com","1234","RESIDENT");
+			Auth a3 = new Auth("ahealy@mail.com","1234","RESIDENT");
+			Auth a4 = new Auth("mitchS@mail.com","1234","RESIDENT");
+			authRepo.saveAll(List.of(a1, a2, a3, a4));
+
+			Users u1 = new Users("John", "Doe", "MALE","483284293",r1.getResidence_id(),a1.getAuth_id());
+			Users u2 = new Users("Jack","Willow","MALE","38423945",r3.getResidence_id(),a2.getAuth_id());
+			Users u3 = new Users("Alyssa","Healy","FEMALE","4290348230",r4.getResidence_id(),a3.getAuth_id());
+			Users u4 = new Users("Mitchell","Starc","MALE","4523948212",r4.getResidence_id(),a4.getAuth_id());
 			userRepo.saveAll(List.of(u1,u2,u3,u4));
 
 			Issues issue1 = new Issues("Smell from drainage system",new Date().toString(),u1.getId(),"Solved");
