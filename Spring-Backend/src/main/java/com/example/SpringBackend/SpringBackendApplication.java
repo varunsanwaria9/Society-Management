@@ -1,10 +1,10 @@
 package com.example.SpringBackend;
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.SpringBackend.database.entities.*;
-import com.example.SpringBackend.database.enums.Genders;
-import com.example.SpringBackend.database.enums.Vehicle_Type;
+import com.example.SpringBackend.database.enums.*;
 import com.example.SpringBackend.database.repos.*;
 
 import org.springframework.boot.CommandLineRunner;
@@ -23,7 +23,8 @@ public class SpringBackendApplication {
 	CommandLineRunner runner(TowerRepo towerRepo,
 			ResidenceRepo residenceRepo,
 			ParkingRepo parkingRepo,
-			UserRepo userRepo) {
+			UserRepo userRepo,
+			IssueRepo issueRepo) {
 		
 		return args -> {
 			Towers t1 = new Towers("Ruby");
@@ -54,6 +55,11 @@ public class SpringBackendApplication {
 			Users u3 = new Users("Alyssa","Healy",Genders.FEMALE.toString(),"4290348230",r4.getResidence_id(),0);
 			Users u4 = new Users("Mitchell","Starc",Genders.MALE.toString(),"4523948212",r4.getResidence_id(),0);
 			userRepo.saveAll(List.of(u1,u2,u3,u4));
+
+			Issues issue1 = new Issues("Smell from drainage system",new Date().toString(),u1.getId(),"Solved");
+			Issues issue2 = new Issues("Smell from drainage system",new Date().toString(),u2.getId(),"Resolving");
+			Issues issue3 = new Issues("No proper waste pickup from house",new Date().toString(),u2.getId(),"Generated");
+			issueRepo.saveAll(List.of(issue1,issue2,issue3));
 
 			System.out.println("Command Line Executed");
 		};
