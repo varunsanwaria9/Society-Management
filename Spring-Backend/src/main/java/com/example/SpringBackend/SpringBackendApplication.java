@@ -55,12 +55,11 @@ public class SpringBackendApplication {
 			Auth a2 = new Auth("jack@mail.com","1234","RESIDENT");
 			Auth a3 = new Auth("ahealy@mail.com","1234","RESIDENT");
 			Auth a4 = new Auth("mitchS@mail.com","1234","RESIDENT");
-			authRepo.saveAll(List.of(a1, a2, a3, a4));
 
-			Users u1 = new Users("John", "Doe", "MALE","483284293",r1.getResidence_id(),a1.getAuth_id());
-			Users u2 = new Users("Jack","Willow","MALE","38423945",r3.getResidence_id(),a2.getAuth_id());
-			Users u3 = new Users("Alyssa","Healy","FEMALE","4290348230",r4.getResidence_id(),a3.getAuth_id());
-			Users u4 = new Users("Mitchell","Starc","MALE","4523948212",r4.getResidence_id(),a4.getAuth_id());
+			Users u1 = new Users("John", "Doe", "MALE","483284293",r1.getResidence_id(),a1);
+			Users u2 = new Users("Jack","Willow","MALE","38423945",r3.getResidence_id(),a2);
+			Users u3 = new Users("Alyssa","Healy","FEMALE","4290348230",r4.getResidence_id(),a3);
+			Users u4 = new Users("Mitchell","Starc","MALE","4523948212",r4.getResidence_id(),a4);
 			userRepo.saveAll(List.of(u1,u2,u3,u4));
 
 			Issues issue1 = new Issues("Smell from drainage system",new Date().toString(),u1.getId(),"Solved");
@@ -68,8 +67,11 @@ public class SpringBackendApplication {
 			Issues issue3 = new Issues("No proper waste pickup from house",new Date().toString(),u2.getId(),"Generated");
 			issueRepo.saveAll(List.of(issue1,issue2,issue3));
 
-			Society_Auth sa1 = new Society_Auth();
-			Society_Auth sa2 = new Society_Auth();
+			Auth asa1 = new Auth("manager@mail.com","1234","MANAGER");
+			Auth asa2 = new Auth("supervisor@mail.com","1234","SUPERVISOR");
+
+			Society_Auth sa1 = new Society_Auth("Xavi","Herrera","MALE","43289272","Somewhere",asa1);
+			Society_Auth sa2 = new Society_Auth("Sam","Smith","MALE","234358934","Somewhere",asa2);
 			society_AuthRepo.saveAll(List.of(sa1,sa2));
 
 			System.out.println("Command Line Executed");

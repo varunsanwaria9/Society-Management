@@ -13,31 +13,32 @@ public class Society_Auth {
     private String genders;
     private String phone_no;
     private String address;
-    private int auth_ref;
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "auth_id")
+    private Auth auth;
 
 
     public Society_Auth() {
     }
 
-    public Society_Auth(String first_name, String last_name, String genders, String phone_no, String address, int auth_ref) {
+    public Society_Auth(String first_name, String last_name, String genders, String phone_no, String address, Auth auth) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.genders = genders;
         this.phone_no = phone_no;
         this.address = address;
-        this.auth_ref = auth_ref;
+        this.auth = auth;
     }
 
-    public Society_Auth(int soc_auth_id, String first_name, String last_name, String genders, String phone_no, String address, int auth_ref) {
+    public Society_Auth(int soc_auth_id, String first_name, String last_name, String genders, String phone_no, String address, Auth auth) {
         this.soc_auth_id = soc_auth_id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.genders = genders;
         this.phone_no = phone_no;
         this.address = address;
-        this.auth_ref = auth_ref;
+        this.auth = auth;
     }
-
 
     public int getSoc_auth_id() {
         return this.soc_auth_id;
@@ -87,12 +88,12 @@ public class Society_Auth {
         this.address = address;
     }
 
-    public int getAuth_ref() {
-        return this.auth_ref;
+    public Auth getAuth() {
+        return this.auth;
     }
 
-    public void setAuth_ref(int auth_ref) {
-        this.auth_ref = auth_ref;
+    public void setAuth(Auth auth) {
+        this.auth = auth;
     }
 
     @Override
@@ -104,7 +105,7 @@ public class Society_Auth {
             ", genders='" + getGenders() + "'" +
             ", phone_no='" + getPhone_no() + "'" +
             ", address='" + getAddress() + "'" +
-            ", auth_ref='" + getAuth_ref() + "'" +
+            ", auth='" + getAuth() + "'" +
             "}";
     }
 

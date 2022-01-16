@@ -12,29 +12,31 @@ public class Users {
     private String gender;
     private String phone_no;
     private int residence_details;
-    private long auth_details;
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "auth_id")
+    private Auth auth;
 
 
     public Users() {
     }
 
-    public Users(String first_name, String last_name, String gender, String phone_no, int residence_details, long auth_details) {
+    public Users(String first_name, String last_name, String gender, String phone_no, int residence_details, Auth auth) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
         this.phone_no = phone_no;
         this.residence_details = residence_details;
-        this.auth_details = auth_details;
+        this.auth = auth;
     }
-
-    public Users(Long id, String first_name, String last_name, String gender, String phone_no, int residence_details, long auth_details) {
+    
+    public Users(Long id, String first_name, String last_name, String gender, String phone_no, int residence_details, Auth auth) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
         this.phone_no = phone_no;
         this.residence_details = residence_details;
-        this.auth_details = auth_details;
+        this.auth = auth;
     }
 
     public Long getId() {
@@ -85,12 +87,12 @@ public class Users {
         this.residence_details = residence_details;
     }
 
-    public long getAuth_details() {
-        return this.auth_details;
+    public Auth getAuth() {
+        return this.auth;
     }
 
-    public void setAuth_details(long auth_details) {
-        this.auth_details = auth_details;
+    public void setAuth(Auth auth) {
+        this.auth = auth;
     }
 
     @Override
@@ -102,7 +104,7 @@ public class Users {
             ", gender='" + getGender() + "'" +
             ", phone_no='" + getPhone_no() + "'" +
             ", residence_details='" + getResidence_details() + "'" +
-            ", auth_details='" + getAuth_details() + "'" +
+            ", auth='" + getAuth() + "'" +
             "}";
     }
 
