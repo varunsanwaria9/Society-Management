@@ -1,49 +1,7 @@
-.App {
-  text-align: center;
-  background-color:rgb(0, 128, 96);
-}
-  
-.label{
-  display: block;
-  font-size: larger;
-  color: white;
-  padding: 5px;
-}
-  
-.input{
-  font-size: larger;
-  padding: 5px;
-  margin: 2px;  
-}
-.btn{
-  color: white;
-  background-color: red;
-  border-radius: 5px;
-  font-size: larger;
-  display: block;
-  padding: 5px;
-  margin: 10px auto;
-}
-  
-.messages{
+.container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  background-color: aqua;
 }
-  
-.error{
-  display: block;
-  background-color: red;
-  color: white;
-  width: fit-content;
-  height: 50px;
-  padding: 5px;
-}
-  
-.success{
-  display: block;
-  background-color: lightblue;
-  color: black;
-  width: fit-content;
-  height: 50px;
-  padding: 5px;
-}
+
