@@ -54,17 +54,16 @@ public class SpringBackendApplication {
 			Portfolio p2 = new Portfolio("NORMAL", 10);
 			Portfolio p3 = new Portfolio("PRESIDENT", 10);
 			Portfolio p4 = new Portfolio("VICE PRESIDENT", 10);
-			portfolioRepo.saveAll(List.of(p1, p2, p3, p4));
 
 			Auth a1 = new Auth("john@mail.com","1234","RESIDENT");
 			Auth a2 = new Auth("jack@mail.com","1234","RESIDENT");
 			Auth a3 = new Auth("ahealy@mail.com","1234","RESIDENT");
 			Auth a4 = new Auth("mitchS@mail.com","1234","RESIDENT");
 
-			Residents u1 = new Residents("John","+917891234567",r1.getResidence_id(),p1.getPortfolio_id(),List.of(),a1);
-			Residents u2 = new Residents("Jack","+917891234567",r2.getResidence_id(),p2.getPortfolio_id(),List.of(),a2);
-			Residents u3 = new Residents("Healy","+917891234567",r3.getResidence_id(),p3.getPortfolio_id(),List.of(),a3);
-			Residents u4 = new Residents("Mitchell","+917891234567",r4.getResidence_id(),p4.getPortfolio_id(),List.of(),a4);
+			Residents u1 = new Residents("John","+917891234567",r1.getResidence_id(),p1,List.of(),a1);
+			Residents u2 = new Residents("Jack","+917891234567",r2.getResidence_id(),p2,List.of(),a2);
+			Residents u3 = new Residents("Healy","+917891234567",r3.getResidence_id(),p3,List.of(),a3);
+			Residents u4 = new Residents("Mitchell","+917891234567",r4.getResidence_id(),p4,List.of(),a4);
 			residentRepo.saveAll(List.of(u1, u2, u3, u4));
 
 			Auth a5 = new Auth("supervisor@mail.com","1234","SUPERVISOR");

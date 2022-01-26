@@ -1,7 +1,6 @@
 package com.example.SpringBackend.database.entities;
 
 import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,8 +11,10 @@ public class Residents {
     private long resident_id;
     private String name;
     private String phone_no;
-    private int residence_ref;
-    private long portfolio_ref;
+    private int resident_ref;
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "portfolio_id")
+    private Portfolio portfolio;
     @Column
     @ElementCollection(targetClass = Committee.class)
     private List<Committee> committee;
@@ -24,21 +25,21 @@ public class Residents {
     public Residents() {
     }
 
-    public Residents(String name, String phone_no, int residence_ref, long portfolio_ref, List<Committee> committee, Auth auth) {
+    public Residents(String name, String phone_no, int resident_ref, Portfolio portfolio, List<Committee> committee, Auth auth) {
         this.name = name;
         this.phone_no = phone_no;
-        this.residence_ref = residence_ref;
-        this.portfolio_ref = portfolio_ref;
+        this.resident_ref = resident_ref;
+        this.portfolio = portfolio;
         this.committee = committee;
         this.auth = auth;
     }
     
-    public Residents(long resident_id, String name, String phone_no, int residence_ref, long portfolio_ref, List<Committee> committee, Auth auth) {
+    public Residents(long resident_id, String name, String phone_no, int resident_ref, Portfolio portfolio, List<Committee> committee, Auth auth) {
         this.resident_id = resident_id;
         this.name = name;
         this.phone_no = phone_no;
-        this.residence_ref = residence_ref;
-        this.portfolio_ref = portfolio_ref;
+        this.resident_ref = resident_ref;
+        this.portfolio = portfolio;
         this.committee = committee;
         this.auth = auth;
     }
@@ -67,20 +68,20 @@ public class Residents {
         this.phone_no = phone_no;
     }
 
-    public int getResidence_ref() {
-        return this.residence_ref;
+    public int getResident_ref() {
+        return this.resident_ref;
     }
 
-    public void setResidence_ref(int residence_ref) {
-        this.residence_ref = residence_ref;
+    public void setResident_ref(int resident_ref) {
+        this.resident_ref = resident_ref;
     }
 
-    public long getPortfolio_ref() {
-        return this.portfolio_ref;
+    public Portfolio getPortfolio() {
+        return this.portfolio;
     }
 
-    public void setPortfolio_ref(long portfolio_ref) {
-        this.portfolio_ref = portfolio_ref;
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
     }
 
     public List<Committee> getCommittee() {
@@ -105,12 +106,11 @@ public class Residents {
             " resident_id='" + getResident_id() + "'" +
             ", name='" + getName() + "'" +
             ", phone_no='" + getPhone_no() + "'" +
-            ", residence_ref='" + getResidence_ref() + "'" +
-            ", portfolio_ref='" + getPortfolio_ref() + "'" +
+            ", resident_ref='" + getResident_ref() + "'" +
+            ", portfolio='" + getPortfolio() + "'" +
             ", committee='" + getCommittee() + "'" +
             ", auth='" + getAuth() + "'" +
             "}";
     }
-
     
 }
