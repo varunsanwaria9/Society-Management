@@ -2,6 +2,8 @@ package com.example.SpringBackend.database.entities;
 
 import javax.persistence.*;
 
+import com.example.SpringBackend.database.enums.ResidenceType;
+
 @Entity
 public class Residences{
 
@@ -10,24 +12,21 @@ public class Residences{
     private int residence_id;
     private int floor_no;
     private int flat_no;
-    private String type;
+    private ResidenceType type;
     private int tower_ref;
-    // @Column
-    // @ElementCollection(targetClass = Parkings.class)
-    // private List<Parkings> parkings;
-    
+
 
     public Residences() {
     }
 
-    public Residences(int floor_no, int flat_no, String type, int tower_ref) {
+    public Residences(int floor_no, int flat_no, ResidenceType type, int tower_ref) {
         this.floor_no = floor_no;
         this.flat_no = flat_no;
         this.type = type;
         this.tower_ref = tower_ref;
     }
 
-    public Residences(int residence_id, int floor_no, int flat_no, String type, int tower_ref) {
+    public Residences(int residence_id, int floor_no, int flat_no, ResidenceType type, int tower_ref) {
         this.residence_id = residence_id;
         this.floor_no = floor_no;
         this.flat_no = flat_no;
@@ -60,11 +59,11 @@ public class Residences{
         this.flat_no = flat_no;
     }
 
-    public String getType() {
+    public ResidenceType getType() {
         return this.type;
     }
 
-    public void setType(String type) {
+    public void setType(ResidenceType type) {
         this.type = type;
     }
 

@@ -2,6 +2,8 @@ package com.example.SpringBackend.database.entities;
 
 import javax.persistence.*;
 
+import com.example.SpringBackend.database.enums.AuthRole;
+
 @Entity
 public class Auth {
 
@@ -10,19 +12,19 @@ public class Auth {
     private Long auth_id;
     private String email;
     private String password;
-    private String roles;
+    private AuthRole roles;
 
 
     public Auth() {
     }
 
-    public Auth(String email, String password, String roles) {
+    public Auth(String email, String password, AuthRole roles) {
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
     
-    public Auth(Long auth_id, String email, String password, String roles) {
+    public Auth(Long auth_id, String email, String password, AuthRole roles) {
         this.auth_id = auth_id;
         this.email = email;
         this.password = password;
@@ -54,11 +56,11 @@ public class Auth {
         this.password = password;
     }
 
-    public String getRoles() {
+    public AuthRole getRoles() {
         return this.roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(AuthRole roles) {
         this.roles = roles;
     }
 

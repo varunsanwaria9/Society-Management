@@ -2,6 +2,8 @@ package com.example.SpringBackend.database.entities;
 
 import javax.persistence.*;
 
+import com.example.SpringBackend.database.enums.BillStage;
+
 @Entity
 public class Bills {
     
@@ -10,14 +12,15 @@ public class Bills {
     private long bill_id;
     private String details;
     private long amount;
-    private String status;
+    private BillStage status;
     private String paid_on;
     private int residence_ref;
 
     public Bills() {
     }
 
-    public Bills(String details, long amount, String status, String paid_on, int residence_ref) {
+
+    public Bills(String details, long amount, BillStage status, String paid_on, int residence_ref) {
         this.details = details;
         this.amount = amount;
         this.status = status;
@@ -25,7 +28,7 @@ public class Bills {
         this.residence_ref = residence_ref;
     }
 
-    public Bills(long bill_id, String details, long amount, String status, String paid_on, int residence_ref) {
+    public Bills(long bill_id, String details, long amount, BillStage status, String paid_on, int residence_ref) {
         this.bill_id = bill_id;
         this.details = details;
         this.amount = amount;
@@ -58,11 +61,11 @@ public class Bills {
         this.amount = amount;
     }
 
-    public String getStatus() {
+    public BillStage getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BillStage status) {
         this.status = status;
     }
 

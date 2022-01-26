@@ -2,6 +2,8 @@ package com.example.SpringBackend.database.entities;
 
 import javax.persistence.*;
 
+import com.example.SpringBackend.database.enums.ComplainStage;
+
 @Entity
 public class Complains {
     
@@ -10,26 +12,27 @@ public class Complains {
     private long complain_id;
     private String details;
     private String raised_on;
-    private String status;
+    private ComplainStage status;
     private int residence_ref;
 
     public Complains() {
     }
 
-    public Complains(String details, String raised_on, String status, int residence_ref) {
+    public Complains(String details, String raised_on, ComplainStage status, int residence_ref) {
         this.details = details;
         this.raised_on = raised_on;
         this.status = status;
         this.residence_ref = residence_ref;
     }
 
-    public Complains(long complain_id, String details, String raised_on, String status, int residence_ref) {
+    public Complains(long complain_id, String details, String raised_on, ComplainStage status, int residence_ref) {
         this.complain_id = complain_id;
         this.details = details;
         this.raised_on = raised_on;
         this.status = status;
         this.residence_ref = residence_ref;
     }
+
 
     public long getComplain_id() {
         return this.complain_id;
@@ -55,11 +58,11 @@ public class Complains {
         this.raised_on = raised_on;
     }
 
-    public String getStatus() {
+    public ComplainStage getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ComplainStage status) {
         this.status = status;
     }
 

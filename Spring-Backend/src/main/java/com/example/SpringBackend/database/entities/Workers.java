@@ -2,6 +2,8 @@ package com.example.SpringBackend.database.entities;
 
 import javax.persistence.*;
 
+import com.example.SpringBackend.database.enums.WorkerDept;
+
 @Entity
 public class Workers {
 
@@ -11,14 +13,14 @@ public class Workers {
     private String name;
     private String phone;
     private String address;
-    private String department;
+    private WorkerDept department;
     private long manager_ref;
     private int tower_ref;
 
     public Workers() {
     }
 
-    public Workers(String name, String phone, String address, String department, long manager_ref, int tower_ref) {
+    public Workers(String name, String phone, String address, WorkerDept department, long manager_ref, int tower_ref) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -27,7 +29,7 @@ public class Workers {
         this.tower_ref = tower_ref;
     }
 
-    public Workers(long worker_id, String name, String phone, String address, String department, long manager_ref, int tower_ref) {
+    public Workers(long worker_id, String name, String phone, String address, WorkerDept department, long manager_ref, int tower_ref) {
         this.worker_id = worker_id;
         this.name = name;
         this.phone = phone;
@@ -69,11 +71,11 @@ public class Workers {
         this.address = address;
     }
 
-    public String getDepartment() {
+    public WorkerDept getDepartment() {
         return this.department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(WorkerDept department) {
         this.department = department;
     }
 
