@@ -99,8 +99,10 @@ public class SpringBackendApplication {
 			b4.setResidence_ref(r4);
 			billRepo.saveAll(List.of(b1, b2, b3, b4));
 
-			Complains c1 = new Complains("Complaint1",new Date().toString(),ComplainStage.RAISED,r1.getResidence_id());
-			Complains c2 = new Complains("Complaint2",new Date().toString(),ComplainStage.RAISED,r2.getResidence_id());
+			Complains c1 = new Complains("Complaint1",new Date().toString(),ComplainStage.RAISED);
+			c1.setResidence_ref(r1);
+			Complains c2 = new Complains("Complaint2",new Date().toString(),ComplainStage.RAISED);
+			c2.setResidence_ref(r2);
 			complainRepo.saveAll(List.of(c1, c2));
 
 			System.out.println("Command Line Executed");

@@ -10,8 +10,11 @@ public class Bills {
     @Id
     @GeneratedValue
     private long bill_id;
+    @Column(nullable = false)
     private String details;
+    @Column(nullable = false)
     private long amount;
+    @Enumerated(EnumType.STRING)
     private BillStage status;
     private String paid_on;
     @OneToOne

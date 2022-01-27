@@ -10,8 +10,12 @@ public class Auth {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long auth_id;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private AuthRole roles;
 
 

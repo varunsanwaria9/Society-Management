@@ -10,29 +10,33 @@ public class Complains {
     @Id
     @GeneratedValue
     private long complain_id;
+    @Column(nullable = false)
     private String details;
     private String raised_on;
+    @Enumerated(EnumType.STRING)
     private ComplainStage status;
-    private int residence_ref;
+    
+    @OneToOne
+    @JoinColumn(name = "residence_ref")
+    private Residences residence_ref;
 
     public Complains() {
     }
 
-    public Complains(String details, String raised_on, ComplainStage status, int residence_ref) {
+    public Complains(String details, String raised_on, ComplainStage status) {
         this.details = details;
         this.raised_on = raised_on;
         this.status = status;
-        this.residence_ref = residence_ref;
     }
-
-    public Complains(long complain_id, String details, String raised_on, ComplainStage status, int residence_ref) {
+    
+    public Complains(long complain_id, String details, String raised_on, ComplainStage status,
+            Residences residence_ref) {
         this.complain_id = complain_id;
         this.details = details;
         this.raised_on = raised_on;
         this.status = status;
         this.residence_ref = residence_ref;
     }
-
 
     public long getComplain_id() {
         return this.complain_id;
@@ -66,23 +70,18 @@ public class Complains {
         this.status = status;
     }
 
-    public int getResidence_ref() {
-        return this.residence_ref;
+    public Residences getResidence_ref() {
+        return residence_ref;
     }
 
-    public void setResidence_ref(int residence_ref) {
+    public void setResidence_ref(Residences residence_ref) {
         this.residence_ref = residence_ref;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " complain_id='" + getComplain_id() + "'" +
-            ", details='" + getDetails() + "'" +
-            ", raised_on='" + getRaised_on() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", residence_ref='" + getResidence_ref() + "'" +
-            "}";
+        return "Complains [complain_id=" + complain_id + ", details=" + details + ", raised_on=" + raised_on
+                + ", residence_ref=" + residence_ref + ", status=" + status + "]";
     }
 
 }
