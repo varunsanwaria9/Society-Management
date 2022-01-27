@@ -89,10 +89,14 @@ public class SpringBackendApplication {
 			Workers w4 = new Workers("Worker2","+917891234567","Address",WorkerDept.SWEEPER,m2.getManager_id(),t2.getTower_id());
 			workerRepo.saveAll(List.of(w3, w4));
 
-			Bills b1 = new Bills("Maintenance",1200L,BillStage.GENERATED,"",r1.getResidence_id());
-			Bills b2 = new Bills("Maintenance",1200L,BillStage.GENERATED,"",r2.getResidence_id());
-			Bills b3 = new Bills("Maintenance",1200L,BillStage.GENERATED,"",r3.getResidence_id());
-			Bills b4 = new Bills("Maintenance",1200L,BillStage.GENERATED,"",r4.getResidence_id());
+			Bills b1 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
+			b1.setResidence_ref(r1);
+			Bills b2 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
+			b2.setResidence_ref(r2);
+			Bills b3 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
+			b3.setResidence_ref(r3);
+			Bills b4 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
+			b4.setResidence_ref(r4);
 			billRepo.saveAll(List.of(b1, b2, b3, b4));
 
 			Complains c1 = new Complains("Complaint1",new Date().toString(),ComplainStage.RAISED,r1.getResidence_id());

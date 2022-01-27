@@ -13,13 +13,13 @@ public class Residents {
     private String phone_no;
     private int resident_ref;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "portfolio_id")
+    @JoinColumn(name = "portfolio_ref")
     private Portfolio portfolio;
     @Column
     @ElementCollection(targetClass = Committee.class)
     private List<Committee> committee;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "auth_id")
+    @JoinColumn(name = "auth_ref")
     private Auth auth;
 
     public Residents() {

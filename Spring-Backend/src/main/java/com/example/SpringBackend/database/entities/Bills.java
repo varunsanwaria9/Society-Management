@@ -14,21 +14,21 @@ public class Bills {
     private long amount;
     private BillStage status;
     private String paid_on;
-    private int residence_ref;
+    @OneToOne
+    @JoinColumn(name = "residence_ref")
+    private Residences residence_ref;
 
     public Bills() {
     }
 
-
-    public Bills(String details, long amount, BillStage status, String paid_on, int residence_ref) {
+    public Bills(String details, long amount, BillStage status, String paid_on) {
         this.details = details;
         this.amount = amount;
         this.status = status;
         this.paid_on = paid_on;
-        this.residence_ref = residence_ref;
     }
 
-    public Bills(long bill_id, String details, long amount, BillStage status, String paid_on, int residence_ref) {
+    public Bills(long bill_id, String details, long amount, BillStage status, String paid_on, Residences residence_ref) {
         this.bill_id = bill_id;
         this.details = details;
         this.amount = amount;
@@ -77,24 +77,18 @@ public class Bills {
         this.paid_on = paid_on;
     }
 
-    public int getResidence_ref() {
-        return this.residence_ref;
+    public Residences getResidence_ref() {
+        return residence_ref;
     }
 
-    public void setResidence_ref(int residence_ref) {
+    public void setResidence_ref(Residences residence_ref) {
         this.residence_ref = residence_ref;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " bill_id='" + getBill_id() + "'" +
-            ", details='" + getDetails() + "'" +
-            ", amount='" + getAmount() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", paid_on='" + getPaid_on() + "'" +
-            ", residence_ref='" + getResidence_ref() + "'" +
-            "}";
+        return "Bills [amount=" + amount + ", bill_id=" + bill_id + ", details=" + details + ", paid_on=" + paid_on
+                + ", residence_ref=" + residence_ref + ", status=" + status + "]";
     }
 
 }
