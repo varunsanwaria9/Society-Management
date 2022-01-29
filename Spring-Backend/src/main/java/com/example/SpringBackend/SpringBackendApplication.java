@@ -85,16 +85,28 @@ public class SpringBackendApplication {
 
 			Supervisor s1 = new Supervisor("Supervisor","+917891234567","Address",a5);
 			supervisorRepo.save(s1);
-			Managers m1 = new Managers("Manager1","+917891234567","Address",t1.getTower_id(),s1.getSupervisor_id(),a6);
-			Managers m2 = new Managers("Manager2","+917891234567","Address",t2.getTower_id(),s1.getSupervisor_id(),a7);
+			Managers m1 = new Managers("Manager1","+917891234567","Address",a6);
+			m1.setTower_ref(t1);
+			m1.setSupervisor_ref(s1);
+			Managers m2 = new Managers("Manager2","+917891234567","Address",a7);
+			m2.setTower_ref(t2);
+			m2.setSupervisor_ref(s1);
 			managerRepo.saveAll(List.of(m1, m2));
 
-			Watchmen w1 = new Watchmen("Watchman1","+917891234567","Address",m1.getManager_id(),t1.getTower_id());
-			Watchmen w2 = new Watchmen("Watchman2","+917891234567","Address",m2.getManager_id(),t2.getTower_id());
+			Watchmen w1 = new Watchmen("Watchman1","+917891234567","Address");
+			w1.setManager_ref(m1);
+			w1.setTower_ref(t1);
+			Watchmen w2 = new Watchmen("Watchman2","+917891234567","Address");
+			w2.setManager_ref(m1);
+			w2.setTower_ref(t1);
 			watchmenRepo.saveAll(List.of(w1, w2));
 
-			Workers w3 = new Workers("Worker1","+917891234567","Address",WorkerDept.SWEEPER,m1.getManager_id(),t1.getTower_id());
-			Workers w4 = new Workers("Worker2","+917891234567","Address",WorkerDept.SWEEPER,m2.getManager_id(),t2.getTower_id());
+			Workers w3 = new Workers("Worker1","+917891234567","Address",WorkerDept.SWEEPER);
+			w3.setManager_ref(m1);
+			w3.setTower_ref(t1);
+			Workers w4 = new Workers("Worker2","+917891234567","Address",WorkerDept.SWEEPER);
+			w4.setManager_ref(m2);
+			w4.setTower_ref(t2);
 			workerRepo.saveAll(List.of(w3, w4));
 
 			Bills b1 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");

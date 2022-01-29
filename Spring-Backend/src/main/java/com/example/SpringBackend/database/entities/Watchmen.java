@@ -11,21 +11,24 @@ public class Watchmen {
     private String name;
     private String phone;
     private String address;
-    private long manager_ref;
-    private int tower_ref;
+    @OneToOne
+    @JoinColumn(name = "manager_ref")
+    private Managers manager_ref;
+    @OneToOne
+    @JoinColumn(name = "tower_ref")
+    private Towers tower_ref;
 
     public Watchmen() {
     }
 
-    public Watchmen(String name, String phone, String address, long manager_ref, int tower_ref) {
+    public Watchmen(String name, String phone, String address) {
         this.name = name;
         this.phone = phone;
         this.address = address;
-        this.manager_ref = manager_ref;
-        this.tower_ref = tower_ref;
     }
 
-    public Watchmen(long watchmen_id, String name, String phone, String address, long manager_ref, int tower_ref) {
+    public Watchmen(long watchmen_id, String name, String phone, String address, Managers manager_ref,
+            Towers tower_ref) {
         this.watchmen_id = watchmen_id;
         this.name = name;
         this.phone = phone;
@@ -35,7 +38,7 @@ public class Watchmen {
     }
 
     public long getWatchmen_id() {
-        return this.watchmen_id;
+        return watchmen_id;
     }
 
     public void setWatchmen_id(long watchmen_id) {
@@ -43,7 +46,7 @@ public class Watchmen {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -51,7 +54,7 @@ public class Watchmen {
     }
 
     public String getPhone() {
-        return this.phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
@@ -59,39 +62,33 @@ public class Watchmen {
     }
 
     public String getAddress() {
-        return this.address;
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public long getManager_ref() {
-        return this.manager_ref;
+    public Managers getManager_ref() {
+        return manager_ref;
     }
 
-    public void setManager_ref(long manager_ref) {
+    public void setManager_ref(Managers manager_ref) {
         this.manager_ref = manager_ref;
     }
 
-    public int getTower_ref() {
-        return this.tower_ref;
+    public Towers getTower_ref() {
+        return tower_ref;
     }
 
-    public void setTower_ref(int tower_ref) {
+    public void setTower_ref(Towers tower_ref) {
         this.tower_ref = tower_ref;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " watchmen_id='" + getWatchmen_id() + "'" +
-            ", name='" + getName() + "'" +
-            ", phone='" + getPhone() + "'" +
-            ", address='" + getAddress() + "'" +
-            ", manager_ref='" + getManager_ref() + "'" +
-            ", tower_ref='" + getTower_ref() + "'" +
-            "}";
+        return "Watchmen [address=" + address + ", manager_ref=" + manager_ref + ", name=" + name + ", phone=" + phone
+                + ", tower_ref=" + tower_ref + ", watchmen_id=" + watchmen_id + "]";
     }
 
 }
