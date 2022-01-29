@@ -69,10 +69,14 @@ public class SpringBackendApplication {
 			Auth a3 = new Auth("ahealy@mail.com","1234",AuthRole.RESIDENT);
 			Auth a4 = new Auth("mitchS@mail.com","1234",AuthRole.RESIDENT);
 
-			Residents u1 = new Residents("John","+917891234567",r1.getResidence_id(),p1,List.of(),a1);
-			Residents u2 = new Residents("Jack","+917891234567",r2.getResidence_id(),p2,List.of(),a2);
-			Residents u3 = new Residents("Healy","+917891234567",r3.getResidence_id(),p3,List.of(),a3);
-			Residents u4 = new Residents("Mitchell","+917891234567",r4.getResidence_id(),p4,List.of(),a4);
+			Residents u1 = new Residents("John","+917891234567",p1,List.of(),a1);
+			u1.setResidence_ref(r1);
+			Residents u2 = new Residents("Jack","+917891234567",p2,List.of(),a2);
+			u2.setResidence_ref(r2);
+			Residents u3 = new Residents("Healy","+917891234567",p3,List.of(),a3);
+			u3.setResidence_ref(r3);
+			Residents u4 = new Residents("Mitchell","+917891234567",p4,List.of(),a4);
+			u4.setResidence_ref(r4);
 			residentRepo.saveAll(List.of(u1, u2, u3, u4));
 
 			Auth a5 = new Auth("supervisor@mail.com","1234",AuthRole.SUPERVISOR);

@@ -9,9 +9,13 @@ public class Residents {
     @Id
     @GeneratedValue
     private long resident_id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String phone_no;
-    private int resident_ref;
+    @OneToOne
+    @JoinColumn(name = "residence_ref")
+    private Residences residence_ref;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "portfolio_ref")
     private Portfolio portfolio;
@@ -19,33 +23,33 @@ public class Residents {
     @ElementCollection(targetClass = Committee.class)
     private List<Committee> committee;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "auth_ref")
+    @JoinColumn(name = "auth_ref",nullable = false)
     private Auth auth;
 
     public Residents() {
     }
 
-    public Residents(String name, String phone_no, int resident_ref, Portfolio portfolio, List<Committee> committee, Auth auth) {
+    public Residents(String name, String phone_no, Portfolio portfolio, List<Committee> committee, Auth auth) {
         this.name = name;
         this.phone_no = phone_no;
-        this.resident_ref = resident_ref;
         this.portfolio = portfolio;
         this.committee = committee;
         this.auth = auth;
     }
-    
-    public Residents(long resident_id, String name, String phone_no, int resident_ref, Portfolio portfolio, List<Committee> committee, Auth auth) {
+
+    public Residents(long resident_id, String name, String phone_no, Residences residence_ref, Portfolio portfolio,
+            List<Committee> committee, Auth auth) {
         this.resident_id = resident_id;
         this.name = name;
         this.phone_no = phone_no;
-        this.resident_ref = resident_ref;
+        this.residence_ref = residence_ref;
         this.portfolio = portfolio;
         this.committee = committee;
         this.auth = auth;
     }
 
     public long getResident_id() {
-        return this.resident_id;
+        return resident_id;
     }
 
     public void setResident_id(long resident_id) {
@@ -53,7 +57,7 @@ public class Residents {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -61,23 +65,23 @@ public class Residents {
     }
 
     public String getPhone_no() {
-        return this.phone_no;
+        return phone_no;
     }
 
     public void setPhone_no(String phone_no) {
         this.phone_no = phone_no;
     }
 
-    public int getResident_ref() {
-        return this.resident_ref;
+    public Residences getResidence_ref() {
+        return residence_ref;
     }
 
-    public void setResident_ref(int resident_ref) {
-        this.resident_ref = resident_ref;
+    public void setResidence_ref(Residences residence_ref) {
+        this.residence_ref = residence_ref;
     }
 
     public Portfolio getPortfolio() {
-        return this.portfolio;
+        return portfolio;
     }
 
     public void setPortfolio(Portfolio portfolio) {
@@ -85,7 +89,7 @@ public class Residents {
     }
 
     public List<Committee> getCommittee() {
-        return this.committee;
+        return committee;
     }
 
     public void setCommittee(List<Committee> committee) {
@@ -93,7 +97,7 @@ public class Residents {
     }
 
     public Auth getAuth() {
-        return this.auth;
+        return auth;
     }
 
     public void setAuth(Auth auth) {
@@ -102,15 +106,9 @@ public class Residents {
 
     @Override
     public String toString() {
-        return "{" +
-            " resident_id='" + getResident_id() + "'" +
-            ", name='" + getName() + "'" +
-            ", phone_no='" + getPhone_no() + "'" +
-            ", resident_ref='" + getResident_ref() + "'" +
-            ", portfolio='" + getPortfolio() + "'" +
-            ", committee='" + getCommittee() + "'" +
-            ", auth='" + getAuth() + "'" +
-            "}";
+        return "Residents [auth=" + auth + ", committee=" + committee + ", name=" + name + ", phone_no=" + phone_no
+                + ", portfolio=" + portfolio + ", residence_ref=" + residence_ref + ", resident_id=" + resident_id
+                + "]";
     }
     
 }
