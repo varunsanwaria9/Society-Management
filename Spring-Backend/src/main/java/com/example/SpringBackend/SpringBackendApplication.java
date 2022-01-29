@@ -49,10 +49,14 @@ public class SpringBackendApplication {
 			Towers t10 = new Towers("Gym");
 			towerRepo.saveAll(List.of(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10));
 			
-			Residences r1 = new Residences(1,102,ResidenceType.THREEBHK,t1.getTower_id());
-			Residences r2 = new Residences(1,102,ResidenceType.TWOBHK,t2.getTower_id());
-			Residences r3 = new Residences(1,102,ResidenceType.TWOBHK,t3.getTower_id());
-			Residences r4 = new Residences(1,102,ResidenceType.TWOBHK,t4.getTower_id());
+			Residences r1 = new Residences(1,102,ResidenceType.THREEBHK);
+			r1.setTower_ref(t1);
+			Residences r2 = new Residences(1,102,ResidenceType.TWOBHK);
+			r2.setTower_ref(t2);
+			Residences r3 = new Residences(1,102,ResidenceType.TWOBHK);
+			r3.setTower_ref(t3);
+			Residences r4 = new Residences(1,102,ResidenceType.TWOBHK);
+			r4.setTower_ref(t4);
 			residenceRepo.saveAll(List.of(r1, r2, r3, r4));
 			
 			Portfolio p1 = new Portfolio("NORMAL", 10);
