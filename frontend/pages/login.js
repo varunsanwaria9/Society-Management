@@ -24,17 +24,25 @@ export default function Login() {
 					}
 				})
 				.catch(err => {
-					if(err.response.status===400){
-						setShowNotification({
-							show: true,
-							msg: 'Incorrect Email',
-						})
-					}
-					else if(err.response.status===403){
-						setShowNotification({
-							show: true,
-							msg: 'Incorrect Password',
-						})
+					if(err.response){
+						if(err.response.status===400){
+							setShowNotification({
+								show: true,
+								msg: 'Incorrect Email',
+							})
+						}
+						else if(err.response.status===403){
+							setShowNotification({
+								show: true,
+								msg: 'Incorrect Password',
+							})
+						}
+						else{
+							setShowNotification({
+								show: true,
+								msg: `Error with status ${err.response.status}`,
+							})
+						}
 					}
 					else{
 						setShowNotification({

@@ -30,17 +30,19 @@ export default function Register() {
 						}
 					})
 					.catch(err => {
-						if(err.response.status === 400){
-							setShowNotification({
-								show: true,
-								msg: 'Email already exists',
-							})
-						}
-						else{
-							setShowNotification({
-								show: true,
-								msg: 'Something went wrong',
-							})
+						if(err.response){
+							if(err.response.status === 400){
+								setShowNotification({
+									show: true,
+									msg: 'Email already exists',
+								})
+							}
+							else{
+								setShowNotification({
+									show: true,
+									msg: 'Something went wrong',
+								})
+							}
 						}
 					})
 			}
