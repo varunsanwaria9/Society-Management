@@ -8,7 +8,7 @@ import com.example.SpringBackend.database.enums.ComplainStage;
 public class Complains {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long complain_id;
     @Column(nullable = false)
     private String details;

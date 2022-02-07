@@ -1,22 +1,15 @@
 package com.example.SpringBackend.controller;
 
-import java.util.List;
 import java.util.Optional;
 
-import com.example.SpringBackend.database.entities.Auth;
-import com.example.SpringBackend.database.entities.Portfolio;
-import com.example.SpringBackend.database.entities.Residents;
-import com.example.SpringBackend.database.models.LoginModel;
-import com.example.SpringBackend.database.models.RegisterModel;
-import com.example.SpringBackend.database.repos.AuthRepo;
-import com.example.SpringBackend.database.repos.PortfolioRepo;
-import com.example.SpringBackend.database.repos.ResidentRepo;
+import com.example.SpringBackend.database.entities.*;
+import com.example.SpringBackend.database.models.*;
+import com.example.SpringBackend.database.repos.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,10 +21,6 @@ public class AllController {
 
     @Autowired
     private AuthRepo authRepo;
-    @Autowired
-    private ResidentRepo residentRepo;
-    @Autowired
-    private PortfolioRepo portfolioRepo;
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginModel loginModel) {
@@ -57,9 +46,5 @@ public class AllController {
     //     return new ResponseEntity<>(registerModel, HttpStatus.OK);
     // }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Residents>> getAll() {
-        return new ResponseEntity<>(residentRepo.findAll(), HttpStatus.OK);
-    }
     
 }

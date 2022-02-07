@@ -11,7 +11,7 @@ public class Residences{
     @GeneratedValue
     private int residence_id;
     private int floor_no;
-    private int flat_no;
+    private String flat_no;
     @Enumerated(EnumType.STRING)
     private ResidenceType type;
     @OneToOne
@@ -22,13 +22,13 @@ public class Residences{
     public Residences() {
     }
 
-    public Residences(int floor_no, int flat_no, ResidenceType type) {
+    public Residences(int floor_no, String flat_no, ResidenceType type) {
         this.floor_no = floor_no;
         this.flat_no = flat_no;
         this.type = type;
     }
 
-    public Residences(int residence_id, int floor_no, int flat_no, ResidenceType type, Towers tower_ref) {
+    public Residences(int residence_id, int floor_no, String flat_no, ResidenceType type, Towers tower_ref) {
         this.residence_id = residence_id;
         this.floor_no = floor_no;
         this.flat_no = flat_no;
@@ -53,11 +53,11 @@ public class Residences{
         this.floor_no = floor_no;
     }
 
-    public int getFlat_no() {
+    public String getFlat_no() {
         return this.flat_no;
     }
 
-    public void setFlat_no(int flat_no) {
+    public void setFlat_no(String flat_no) {
         this.flat_no = flat_no;
     }
 
