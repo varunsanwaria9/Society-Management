@@ -1,6 +1,7 @@
 package com.example.SpringBackend.database.repos;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.SpringBackend.database.entities.Residences;
 
@@ -17,4 +18,12 @@ public interface ResidenceRepo extends JpaRepository<Residences, Long> {
             nativeQuery = true)
     List<Residences> findByTowerAndFloor(int towerId, int floorNo);
 
+    @Query(value = "select * from residences where floor_no = ?1", 
+            nativeQuery = true)
+	List<Residences> findByFloor(int floorNo);
+
+	@Query(value = "select * from residences where flat_no = ?1", 
+			nativeQuery = true)
+	Optional<Residences> findByFlatNo(String flatNo);
+        
 }

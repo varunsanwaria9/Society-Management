@@ -35,8 +35,20 @@ public class ResidenceService {
         return true;
     }
 
+    public Residences getResidenceByFlatNo(String flatNo){
+        Optional<Residences> residences = residenceRepo.findByFlatNo(flatNo);
+        if(residences.isPresent()){
+            return residences.get();
+        }
+        return null;
+    }
+    
     public List<Residences> getResidencesByTower(int towerId){
         return residenceRepo.findByTower(towerId);
+    }
+
+    public List<Residences> getResidencesByFloor(int floorId){
+        return residenceRepo.findByFloor(floorId);
     }
 
     public List<Residences> getResidenceByTowerFloor(int towerId, int floorNo){
