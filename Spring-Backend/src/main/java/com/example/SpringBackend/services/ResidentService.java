@@ -31,6 +31,10 @@ public class ResidentService {
         return residentRepo.save(residents);
     }
 
+    public Residents findByEmail(String email){
+        return residentRepo.findByEmail(email);
+    }
+
     public boolean deleteResidents(long id){
         residentRepo.deleteById(id);
         return true;

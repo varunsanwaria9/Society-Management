@@ -31,7 +31,7 @@ public class AllController {
         if(!auth.get().getPassword().equals(loginModel.getPassword())){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>("Login Successful", HttpStatus.OK);
+        return new ResponseEntity<>(loginModel.getEmail(), HttpStatus.OK);
     }
 
     // @PostMapping("/register")
