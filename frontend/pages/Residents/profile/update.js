@@ -8,7 +8,8 @@ export default function ResidentProfileUpdate(){
     useEffect(() => {
         ResidentService.detailsByEmail()
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
+            setResident(response.data);
         })
         .catch(e => {
             console.log(e);
@@ -18,5 +19,6 @@ export default function ResidentProfileUpdate(){
     return(
         <div>
             <p>Update Residents Details Page</p>
+            <p>{JSON.stringify(resident)}</p>
         </div>
 )}
