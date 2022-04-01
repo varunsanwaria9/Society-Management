@@ -15,8 +15,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
+@CrossOrigin
 public class SpringBackendApplication {
 
 	public static void main(String[] args) {
@@ -25,17 +27,17 @@ public class SpringBackendApplication {
 
 	@Bean
 	CommandLineRunner runner(TowerRepo towerRepo,
-			ResidenceRepo residenceRepo,
-			ResidentRepo residentRepo,
-			AuthRepo authRepo,
-			SupervisorRepo supervisorRepo,
-			ManagerRepo managerRepo,
-			WatchmenRepo watchmenRepo,
-			WorkerRepo workerRepo,
-			BillRepo billRepo,
-			ComplainRepo complainRepo,
-			PortfolioRepo portfolioRepo) {
-		
+							 ResidenceRepo residenceRepo,
+							 ResidentRepo residentRepo,
+							 AuthRepo authRepo,
+							 SupervisorRepo supervisorRepo,
+							 ManagerRepo managerRepo,
+							 WatchmenRepo watchmenRepo,
+							 WorkerRepo workerRepo,
+							 BillRepo billRepo,
+							 ComplainRepo complainRepo,
+							 PortfolioRepo portfolioRepo) {
+
 		return args -> {
 			Towers t1 = new Towers("Ruby");
 			Towers t2 = new Towers("Pearl");
@@ -48,7 +50,7 @@ public class SpringBackendApplication {
 			Towers t9 = new Towers("Swimming Pool");
 			Towers t10 = new Towers("Gym");
 			towerRepo.saveAll(List.of(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10));
-			
+
 			Residences r1 = new Residences(1,"R102",ResidenceType.THREEBHK);
 			r1.setTower_ref(t1);
 			Residences r2 = new Residences(1,"P102",ResidenceType.TWOBHK);
@@ -58,7 +60,7 @@ public class SpringBackendApplication {
 			Residences r4 = new Residences(1,"T102",ResidenceType.TWOBHK);
 			r4.setTower_ref(t4);
 			residenceRepo.saveAll(List.of(r1, r2, r3, r4));
-			
+
 			Portfolio p1 = new Portfolio("NORMAL", 10);
 			Portfolio p2 = new Portfolio("NORMAL", 10);
 			Portfolio p3 = new Portfolio("PRESIDENT", 10);

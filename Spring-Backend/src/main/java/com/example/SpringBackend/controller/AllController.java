@@ -8,6 +8,7 @@ import com.example.SpringBackend.database.enums.AuthRole;
 import com.example.SpringBackend.database.models.*;
 import com.example.SpringBackend.database.repos.*;
 
+import com.example.SpringBackend.services.ResidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ public class AllController {
     @Autowired
     private AuthRepo authRepo;
 
+    @Autowired
+    private ResidentService residentService;
+
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginModel loginModel) {
         Optional<Auth> auth = authRepo.findByEmail(loginModel.getEmail());
@@ -31,7 +35,7 @@ public class AllController {
         if(!auth.get().getPassword().equals(loginModel.getPassword())){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(loginModel.getEmail(), HttpStatus.OK);
+        return new ResponseEntity<>(loginModel.getEmail() + " " + auth.get().getRoles().toString(), HttpStatus.OK);
     }
 
     @PutMapping("/updatePassword")
@@ -50,7 +54,7 @@ public class AllController {
        if (auth.isPresent()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
        Auth auth1 = new Auth(registerModel.getEmail(), registerModel.getPassword(), AuthRole.RESIDENT);
        Residents residents = new Residents(registerModel.getName(), registerModel.getPhone_no(), new Portfolio("NORMAL",1), List.of(),auth1);
-       return new ResponseEntity<>(HttpStatus.CREATED);
+       return new ResponseEntity<>(residentService.addResidents(residents),HttpStatus.CREATED);
     }
 
     

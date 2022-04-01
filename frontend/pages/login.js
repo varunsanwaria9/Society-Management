@@ -20,7 +20,20 @@ export default function Login() {
 			AllApi.Login({email, password})
 				.then(res => {
 					if(res.status===200){
-						Router.push('/Person');
+						localStorage.setItem('details', res.data);
+						switch (res.data.split(' ')[1]) {
+							case "MANAGER":
+								Router.push('/Managers');
+								break;
+							case "SUPERVISOR":
+								Router.push('/Supervisor');
+								break;
+							case "RESIDENT":
+								Router.push('/Residents');
+								break;
+							default:
+								break;
+						}
 					}
 				})
 				.catch(err => {

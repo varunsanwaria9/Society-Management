@@ -1,6 +1,9 @@
+import React from 'react';
+import ResidentNavbar from '../../components/ResidentNavbar';
+
 export default function ResidentMain() {
     return (
         <div>
-            <p>Make resident welcome page</p>
+            <ResidentNavbar />
         </div>
 )}
