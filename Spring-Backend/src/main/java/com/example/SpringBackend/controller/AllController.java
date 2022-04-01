@@ -1,8 +1,10 @@
 package com.example.SpringBackend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.example.SpringBackend.database.entities.*;
+import com.example.SpringBackend.database.enums.AuthRole;
 import com.example.SpringBackend.database.models.*;
 import com.example.SpringBackend.database.repos.*;
 
@@ -42,17 +44,14 @@ public class AllController {
         return new ResponseEntity<>(authRepo.save(auth),HttpStatus.CREATED);
     }
 
-    // @PostMapping("/register")
-    // public ResponseEntity<RegisterModel> register(@RequestBody RegisterModel registerModel) {
-    //     Optional<Auth> auth = authRepo.findByEmail(registerModel.getEmail());
-    //     if(auth.isPresent()){
-    //         return new ResponseEntity<>(registerModel, HttpStatus.BAD_REQUEST);
-    //     }
-    //     Auth a1 = new Auth(registerModel.getEmail(), registerModel.getPassword(),"RESIDENT");
-    //     Portfolio p1 = portfolioRepo.save(new Portfolio("NORMAL", 0));
-    //     residentRepo.save(new Residents(registerModel.getName(), registerModel.getPhone_no(), 0, p1, List.of(), a1));
-    //     return new ResponseEntity<>(registerModel, HttpStatus.OK);
-    // }
+    @PostMapping("/register")
+    public ResponseEntity<Residents> register(@RequestBody RegisterModel registerModel){
+       Optional<Auth> auth = authRepo.findByEmail(registerModel.getEmail());
+       if (auth.isPresent()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       Auth auth1 = new Auth(registerModel.getEmail(), registerModel.getPassword(), AuthRole.RESIDENT);
+       Residents residents = new Residents(registerModel.getName(), registerModel.getPhone_no(), new Portfolio("NORMAL",1), List.of(),auth1);
+       return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
     
 }
