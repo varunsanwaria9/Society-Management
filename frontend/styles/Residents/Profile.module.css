@@ -1,4 +1,27 @@
 .residentProfileBody{
     width: 100vw;
     min-height: 92vh;
+    display: flex;
+}
+.residentProfileBodyLeft{
+    width: 50%;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.residentProfileBodyRight{
+    width: 50%;
+    margin-left: 5vw;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.residentProfileBodyP{
+    font-weight: bold;   
+}
+.residentProfileBodyP span{
+    font-weight: 200;
 }

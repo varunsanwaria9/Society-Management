@@ -12,7 +12,13 @@ const Register = user => {
     return axios.post(url + 'register', user)
 }
 
+const updatePassword = model => {
+    console.log(model);
+    return axios.put(url + 'updatePassword',{email:"john@mail.com",oldPwd:model.oldPwd,newPwd:model.newPwd})
+}
+
 export default {
     Login,
-    Register
+    Register,
+    updatePassword
 }

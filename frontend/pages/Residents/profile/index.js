@@ -1,6 +1,9 @@
 import React,{useEffect,useState} from 'react';
+import Router from 'next/router';
+
 import ResidentNavbar from '../../../components/ResidentNavbar';
 import ResidentService from '../../../services/ResidentService';
+import styles from '../../../styles/Residents/Profile.module.css'
 
 export default function ResidentProfilePage() {
     
@@ -30,19 +33,19 @@ export default function ResidentProfilePage() {
     return(
         <div>
             <ResidentNavbar />
-            <div className='residentProfileBody'>
-                <div className='residentProfileBodyLeft'> {/* Left Part */} 
-                    <button className='btn btn-primary'>Update Profile</button>
-                    <button className='btn btn-primary'>Update Password</button>
-                    <button className='btn btn-danger'>Delete Profile</button>
+            <div className={styles.residentProfileBody}>
+                <div className={styles.residentProfileBodyLeft}> {/* Left Part */} 
+                    <button className='btn btn-primary w-25 my-2' onClick={() => Router.push('/Residents/profile/update')}>Update Profile</button>
+                    <button className='btn btn-primary w-25 my-2' onClick={() => Router.push('/Residents/profile/password')}>Update Password</button>
+                    <button className='btn btn-danger w-25 my-2'>Delete Profile</button>
                 </div>
-                <div className='residentProfileBodyRight'> {/* Right Part */}
-                    <p>Name: <span>{resident.name}</span></p>
-                    <p>Email: <span>{auth.email}</span></p> 
-                    <p>Phone: <span>{resident.phone_no}</span></p> 
-                    <p>Portfolio:<span>{portfolio.post}</span></p>
-                    <p>Flat No: <span>{residence.flat_no}</span></p>
-                    <p>Committes: <span>
+                <div className={styles.residentProfileBodyRight}> {/* Right Part */}
+                    <p className={styles.residentProfileBodyP}>Name <span>:{resident.name}</span></p>
+                    <p className={styles.residentProfileBodyP}>Email <span>:{auth.email}</span></p> 
+                    <p className={styles.residentProfileBodyP}>Phone <span>:{resident.phone_no}</span></p> 
+                    <p className={styles.residentProfileBodyP}>Portfolio<span>:{portfolio.post}</span></p>
+                    <p className={styles.residentProfileBodyP}>Flat No <span>:{residence.flat_no}</span></p>
+                    <p className={styles.residentProfileBodyP}>Committes <span>
                         {
                             committee.length == 0 ? 
                             "Not Yet In Any" : 
