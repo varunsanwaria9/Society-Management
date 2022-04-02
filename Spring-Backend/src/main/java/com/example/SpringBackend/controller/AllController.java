@@ -39,13 +39,15 @@ public class AllController {
     }
 
     @PutMapping("/updatePassword")
-    public ResponseEntity<Auth> updatePassword(@RequestBody Auth auth){
-        Optional<Auth> auth1 = authRepo.findByEmail(auth.getEmail());
-        if (auth1.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        else if (auth.getPassword().equals(auth1.get().getPassword())){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    public ResponseEntity<Auth> updatePassword(@RequestBody UpdatePasswordModel updatePasswordModel){
+        Optional<Auth> auth1 = authRepo.findByEmail(updatePasswordModel.getEmail());
+        if(auth1.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        else if(auth1.get().getPassword().equals(updatePasswordModel.getOldPwd())){
+            Auth a1 = auth1.get();
+            a1.setPassword(updatePasswordModel.getNewPwd());
+            return new ResponseEntity<>(authRepo.save(a1),HttpStatus.OK);
         }
-        return new ResponseEntity<>(authRepo.save(auth),HttpStatus.CREATED);
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/register")
