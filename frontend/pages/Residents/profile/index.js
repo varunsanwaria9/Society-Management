@@ -16,7 +16,7 @@ export default function ResidentProfilePage() {
     // Show Resident Details
     //  4 buttons: Update Profile, Update Password, Delete Profile, Show Committes (if  any with resident details & if not then show create new committee)
     useEffect(() => {
-        ResidentService.detailsByEmail()
+        ResidentService.detailsByEmail("")
         .then(response => {
             // console.log(response.data);
             setResident(response.data);

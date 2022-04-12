@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import ResidentNavbar from '../../../components/ResidentNavbar';
 import AllApi from '../../../services/AllApi';
+import ResidentNavbar from '../../../components/ResidentNavbar';
 import styles from '../../../styles/Residents/Password.module.css'
 
 export default function ResidentProfilePassword() {

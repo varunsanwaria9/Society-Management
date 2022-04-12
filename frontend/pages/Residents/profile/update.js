@@ -6,7 +6,7 @@ export default function ResidentProfileUpdate(){
     const [resident, setResident] = useState({});
 
     useEffect(() => {
-        ResidentService.detailsByEmail()
+        ResidentService.detailsByEmail("")
         .then(response => {
             // console.log(response.data);
             setResident(response.data);

@@ -2,20 +2,20 @@ package com.example.SpringBackend.controller;
 
 import java.util.List;
 
+import com.example.SpringBackend.database.entities.Managers;
 import com.example.SpringBackend.database.entities.Residences;
 import com.example.SpringBackend.database.entities.Residents;
+import com.example.SpringBackend.services.ManagerService;
 import com.example.SpringBackend.services.ResidenceService;
 import com.example.SpringBackend.services.ResidentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/manager")
 public class ManagerController {
     
@@ -24,6 +24,9 @@ public class ManagerController {
 
     @Autowired
     private ResidentService residentService;
+
+    @Autowired
+    private ManagerService managerService;
 
     @GetMapping("/residences/id/{id}")
     public ResponseEntity<Residences> getResidenceById(@PathVariable long id){
@@ -42,7 +45,7 @@ public class ManagerController {
         }
         return new ResponseEntity<>(residences, HttpStatus.OK);
     }
-    
+
     @GetMapping("/residences/flat/{flatNo}")
     public ResponseEntity<Residences> getResidenceByFlatNo(@PathVariable String flatNo){
         Residences residences = residenceService.getResidenceByFlatNo(flatNo);
@@ -57,5 +60,32 @@ public class ManagerController {
         List<Residents> residents = residentService.getAllResidentsByTower(towerId);
         return new ResponseEntity<>(residents, HttpStatus.OK);
     }
-    
+
+    @GetMapping("/profile/get/{id}")
+    public ResponseEntity<Managers> getManagerById(@PathVariable long id) throws Exception {
+        try{
+            Managers managers = managerService.getManagerById(id);
+            return new ResponseEntity<>(managers,HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/profile/update")
+    public ResponseEntity<Managers> updateManagers(@RequestBody Managers managers){
+        return new ResponseEntity<>(managerService.updateManagers(managers),HttpStatus.CREATED);
+    }
+
+    @GetMapping("/profile/email/{email}")
+    public ResponseEntity<Managers> getManagerByEmail(@PathVariable String email) throws Exception {
+        try{
+            Managers managers = managerService.getManagerByEmail(email);
+            return new ResponseEntity<>(managers,HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
