@@ -9,9 +9,9 @@ export default function ManagersProfilePage(){
     const [tower,setTower] = useState({})
 
     useEffect(() => {
-        ManagerService.detailsByEmail("")
+        ManagerService.detailsByEmail()
         .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             setManager(response.data)
             setAuth(response.data.auth)
             setSupervisor(response.data.supervisor_ref)

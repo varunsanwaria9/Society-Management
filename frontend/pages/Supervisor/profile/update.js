@@ -1,27 +1,24 @@
 import React,{useEffect,useState} from 'react';
 import SupervisorService from '../../../services/SupervisorService';
 
+export default function SupervisorProfileUpdate(){
 
-export default function SupervisorProfilePage() {
-    
     const [supervisor, setSupervisor] = useState({});
-    const [auth, setAuth] = useState({});
-
+    
     useEffect(() => {
-        SupervisorService.getDetailsByEmail()
+        SupervisorService.getDetailsByEmail("")
         .then(response => {
-            console.log(response.data);
             setSupervisor(response.data);
-            setAuth(response.data.auth);
         })
         .catch(e => {
             console.log(e);
         })
-    
+
     },[])
-    
-    return (
+
+    return(
         <div>
-            <h1>SupervisorProfilePage</h1>
+            <h1>Supervisor Profile Update</h1>
         </div>
-)}
+)
+}
