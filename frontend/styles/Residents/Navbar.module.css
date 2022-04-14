@@ -1,0 +1,24 @@
+.navBtn{
+    display: block;
+    padding: .5rem .5rem 1rem ;
+    background: #343a40;
+    color: #5bc0de;
+    border: none;
+    outline: none;
+    font-size: 2.7vh;
+}
+.navBtn:hover{
+    color: #5bc0de;
+    text-decoration: none;
+}
+.navBtn::after{
+    content: "";
+    display: block;
+    transition: 1s;
+    width: 0vh;
+    height: 0vh;
+}
+.navBtn:hover::after{
+    border: 1px solid #5bc0de;;    
+    width: 100%;
+}

@@ -1,4 +1,6 @@
 import React,{useState} from 'react';
+import Router from 'next/router';
+
 import AllApi from '../../../services/AllApi';
 import ResidentNavbar from '../../../components/ResidentNavbar';
 import styles from '../../../styles/Residents/Password.module.css'
@@ -15,7 +17,12 @@ export default function ResidentProfilePassword() {
         e.preventDefault()
         AllApi.updatePassword(pwd)
             .then(res => {
-                console.log(res);
+                if(res.status === 200){
+                    Router.push("/Residents/profile")
+                }
+                else{
+                    alert("Some unknown error occured.")
+                }
             })
             .catch(e => {
                 console.log(e);

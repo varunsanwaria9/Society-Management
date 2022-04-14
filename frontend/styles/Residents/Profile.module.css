@@ -1,11 +1,11 @@
 .residentProfileBody{
     width: 100vw;
-    min-height: 92vh;
+    height: 80vh;
     display: flex;
 }
 .residentProfileBodyLeft{
     width: 50%;
-    min-height: 92vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@
 .residentProfileBodyRight{
     width: 50%;
     margin-left: 5vw;
-    min-height: 92vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

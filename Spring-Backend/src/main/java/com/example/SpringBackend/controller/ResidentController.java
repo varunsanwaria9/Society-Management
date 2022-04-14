@@ -24,7 +24,7 @@ public class ResidentController {
 
     @PutMapping("/updateProfile")
     public ResponseEntity<Residents> updateResidents(@RequestBody Residents residents){
-        return new ResponseEntity<>(residentService.updateResidents(residents), HttpStatus.OK);
+        return new ResponseEntity<>(residentService.updateResidents(residents), HttpStatus.CREATED);
     }
 
 }

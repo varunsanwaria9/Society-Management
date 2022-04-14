@@ -1,26 +1,36 @@
 import React from 'react';
+import Router from 'next/router';
+import styles from '../styles/Residents/Navbar.module.css';
 
 export default function ResidentNavbar() {
     //  make a navbar with values of home, profile, complaints, bills and logout
+    
+    const changePage = (page) => {
+        Router.push(page);
+    }
+    
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="#">Navbar</a>
+        <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+            <a className="navbar-brand w-75 text-light" href="#">Navbar</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                <li className="nav-item active">
-                    <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                <li className="nav-item">
+                    <button className={styles.navBtn} onClick={(e) => changePage("/Residents")}>Home</button>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Features</a>
+                    <button className={styles.navBtn}>Bills</button>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Pricing</a>
+                    <button className={styles.navBtn}>Complains</button>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link disabled" href="#">Disabled</a>
+                    <button className={styles.navBtn} onClick={(e) => changePage("/Residents/profile")}>Profile</button>
+                </li>
+                <li className="nav-item">
+                    <button className={styles.navBtn}>Logout</button>
                 </li>
                 </ul>
             </div>
