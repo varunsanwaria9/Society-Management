@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+
+.App{
+  width: 100vw;
+  height: 100vh;
+}
+.canvas{
+  background-color: rosybrown;
+}
+.home-pos1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-80%,-50%);
+}
+.welcome-msg{
+  font-size: 18vh;
+  font-weight: bold;
+  font-family: 'My Soul', cursive;
+}
+.text-bold{
+  font-size: 4vh;
+  font-weight: bold;
+  font-family: 'My Soul', cursive;
+  
+}
