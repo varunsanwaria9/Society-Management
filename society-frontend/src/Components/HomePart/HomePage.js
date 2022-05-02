@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import Building3 from '../3dModels/Building03'
@@ -7,6 +7,20 @@ import '../styles/HomePart/HomePage.css'
 
 export default function HomePage(){
 
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            let temp = localStorage.getItem('token').split(" ");
+            switch(temp[1]) {
+                case "RESIDENT":
+                    window.location.href = "/residents";
+                    break;
+                default:
+                    alert("Invalid user type");
+                    break;
+            }
+        }
+    },[]);
+
     const routeFn = (route) => {
         window.location.href = route;
     }
@@ -14,6 +28,7 @@ export default function HomePage(){
     return (
         <div className='App'>
             <Canvas className='canvas'>
+                {/* <OrbitControls /> */}
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[-2, 5, 2]} />
                 <Building3 />

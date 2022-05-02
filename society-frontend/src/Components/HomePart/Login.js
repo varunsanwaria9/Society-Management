@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React,{ useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AllApi from '../../services/AllApi';
 import '../styles/HomePart/Login.css';
 
 export default function Login() {
@@ -11,9 +12,75 @@ export default function Login() {
 		msg: "",
 	});
 
+	useEffect(() => {
+        if(localStorage.getItem('token')){
+            let temp = localStorage.getItem('token').split(" ");
+            switch(temp[1]) {
+                case "RESIDENT":
+                    window.location.href = "/residents";
+                    break;
+                default:
+                    alert("Invalid user type");
+                    break;
+            }
+        }
+    },[]);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(email, password);
+		if(email.trim() && password.trim()) {
+			AllApi.Login({email, password})
+			.then(res => {
+				if(res.status === 200) {
+					let temp = res.data.split(" ");
+					localStorage.setItem("token", res.data)
+					switch(temp[1]) {
+						case "RESIDENT":
+							window.location.href = "/residents";
+							break;
+						default:
+							alert("Invalid user type");
+							break;
+					}
+				}
+			})
+			.catch(err => {
+				let eResp = err.response;
+				console.log(eResp.status);
+				if(eResp){
+					if(eResp.status === 400) {
+						setShowNotification({
+							show: true,
+							msg: "Invalid email",
+						});
+					}
+					else if(eResp.status === 403) {
+						setShowNotification({
+							show: true,
+							msg: "Invalid password",
+						});
+					}
+					else{
+						setShowNotification({
+							show: true,
+							msg: "Something went wrong",
+						});
+					}
+				}
+				else {
+					setShowNotification({
+						show: true,
+						msg: "Network Error",
+					});
+				}
+			})
+		}
+		else {
+			setShowNotification({
+				show: true,
+				msg: "Please fill all the fields",
+			});
+		}
 	}
 
    return (

@@ -22,6 +22,11 @@ public class ResidentController {
         return new ResponseEntity<>(residentService.findByEmail(email), HttpStatus.OK);
     }
 
+    @GetMapping("/get/id/{id}")
+    public ResponseEntity<Residents> findDetailsById(@PathVariable long id){
+        return new ResponseEntity<>(residentService.getResidentsById(id),HttpStatus.OK);
+    }
+
     @PutMapping("/updateProfile")
     public ResponseEntity<Residents> updateResidents(@RequestBody Residents residents){
         return new ResponseEntity<>(residentService.updateResidents(residents), HttpStatus.CREATED);

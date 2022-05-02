@@ -35,7 +35,7 @@ public class AllController {
         if(!auth.get().getPassword().equals(loginModel.getPassword())){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(loginModel.getEmail() + " " + auth.get().getRoles().toString(), HttpStatus.OK);
+        return new ResponseEntity<>( residentService.findByEmail(loginModel.getEmail()).getResident_id() + " " + auth.get().getRoles().toString(), HttpStatus.OK);
     }
 
     @PutMapping("/updatePassword")

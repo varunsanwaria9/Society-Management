@@ -3,8 +3,13 @@ import axios  from "axios";
 const url = "http://localhost:8080/residents";
 
 const detailsByEmail = () => {
-    let email = localStorage.getItem("details").split(" ")[0]
+    let email = localStorage.getItem("token").split(" ")[0]
     return axios.get(`${url}/findByEmail/${email}`)
+}
+
+const detailsById = () => {
+    let id = localStorage.getItem("token").split(" ")[0]
+    return axios.get(`${url}/get/id/${id}`)
 }
 
 const update = (resident) => {
@@ -14,5 +19,6 @@ const update = (resident) => {
 
 export default {
     detailsByEmail,
-    update
+    detailsById,
+    update,
 }

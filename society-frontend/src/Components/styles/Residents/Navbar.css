@@ -22,3 +22,8 @@
     border: 1px solid #5bc0de;;    
     width: 100%;
 }
+.bg-nav{
+    background: #343a40;
+    height: 10vh;
+    padding: 0 1vw;
+}

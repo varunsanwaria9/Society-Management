@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React,{ useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AllApi from '../../services/AllApi';
 
 import '../styles/HomePart/Register.css';
 
@@ -17,9 +18,55 @@ export default function Register() {
 		msg: "",
 	});
 
+	useEffect(() => {
+        if(localStorage.getItem('token')){
+            let temp = localStorage.getItem('token').split(" ");
+            switch(temp[1]) {
+                case "RESIDENT":
+                    window.location.href = "/residents";
+                    break;
+                default:
+                    alert("Invalid user type");
+                    break;
+            }
+        }
+    },[]);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(users);
+		if(users.password === confPwd){
+			AllApi.Register(users).then(res => {
+				if(res.status === 201){
+					window.location.href = "/login";
+				}
+				else{
+					setShowNotification({
+						show: true,
+						msg: "Something went wrong.",
+					});
+				}
+			})
+			.catch(err => {
+				if(err.response.status === 400){
+					setShowNotification({
+						show: true,
+						msg: "Email already exists.",
+					});
+				}
+				else{
+					setShowNotification({
+						show: true,
+						msg: "Unknown error with status code: " + err.response.status,
+					});
+				}
+			})
+		}
+		else{
+			setShowNotification({
+				show: true,
+				msg: "Password does not match",
+			});
+		}
 	}
 
 	return (
