@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+
+.resident-home-main{
+    width: 100vw;
+    height: 100vh;
+}
+.resident-home-canvas{
+    width: 100vw;
+    height: 90vh;
+    background-color: lightgray;
+}
+.resident-home-msg{
+    color: #3B3C36;
+    font-size: 12vh;
+    font-family: 'Water Brush', cursive;
+}
