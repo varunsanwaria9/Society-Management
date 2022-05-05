@@ -23,7 +23,7 @@ public class ResidentController {
     }
 
     @GetMapping("/get/id/{id}")
-    public ResponseEntity<Residents> findDetailsById(@PathVariable long id){
+    public ResponseEntity<Residents> findDetailsById(@PathVariable String id){
         return new ResponseEntity<>(residentService.getResidentsById(id),HttpStatus.OK);
     }
 

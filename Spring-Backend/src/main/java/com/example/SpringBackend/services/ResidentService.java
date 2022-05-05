@@ -19,12 +19,9 @@ public class ResidentService {
         return residentRepo.save(residents);
     }
 
-    public Residents getResidentsById(long id){
+    public Residents getResidentsById(String id){
         Optional<Residents> residents = residentRepo.findById(id);
-        if(residents.isPresent()){
-            return residents.get();
-        }
-        return null;
+        return residents.orElse(null);
     }
 
     public Residents updateResidents(Residents residents){
@@ -35,7 +32,7 @@ public class ResidentService {
         return residentRepo.findByEmail(email);
     }
 
-    public boolean deleteResidents(long id){
+    public boolean deleteResidents(String id){
         residentRepo.deleteById(id);
         return true;
     }

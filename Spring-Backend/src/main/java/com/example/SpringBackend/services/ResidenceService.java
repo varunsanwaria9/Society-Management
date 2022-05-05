@@ -18,29 +18,23 @@ public class ResidenceService {
         return residenceRepo.save(residences);
     }
 
-    public Residences getResidenceById(long id){
+    public Residences getResidenceById(String id){
         Optional<Residences> residence = residenceRepo.findById(id);
-        if(residence.isPresent()){
-            return residence.get();
-        }
-        return null;
+        return residence.orElse(null);
     }
 
     public Residences updateResidences(Residences residences){
         return residenceRepo.save(residences);
     }
     
-    public boolean deleteResidence(long id){
+    public boolean deleteResidence(String id){
         residenceRepo.deleteById(id);
         return true;
     }
 
     public Residences getResidenceByFlatNo(String flatNo){
         Optional<Residences> residences = residenceRepo.findByFlatNo(flatNo);
-        if(residences.isPresent()){
-            return residences.get();
-        }
-        return null;
+        return residences.orElse(null);
     }
     
     public List<Residences> getResidencesByTower(int towerId){

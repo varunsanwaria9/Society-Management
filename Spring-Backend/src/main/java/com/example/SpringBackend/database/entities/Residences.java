@@ -3,13 +3,15 @@ package com.example.SpringBackend.database.entities;
 import javax.persistence.*;
 
 import com.example.SpringBackend.database.enums.ResidenceType;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Residences{
 
     @Id
-    @GeneratedValue
-    private int residence_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String residence_id;
     private int floor_no;
     private String flat_no;
     @Enumerated(EnumType.STRING)
@@ -28,7 +30,7 @@ public class Residences{
         this.type = type;
     }
 
-    public Residences(int residence_id, int floor_no, String flat_no, ResidenceType type, Towers tower_ref) {
+    public Residences(String residence_id, int floor_no, String flat_no, ResidenceType type, Towers tower_ref) {
         this.residence_id = residence_id;
         this.floor_no = floor_no;
         this.flat_no = flat_no;
@@ -37,11 +39,11 @@ public class Residences{
     }
 
 
-    public int getResidence_id() {
+    public String getResidence_id() {
         return this.residence_id;
     }
 
-    public void setResidence_id(int residence_id) {
+    public void setResidence_id(String residence_id) {
         this.residence_id = residence_id;
     }
 

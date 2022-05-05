@@ -3,13 +3,15 @@ package com.example.SpringBackend.database.entities;
 import javax.persistence.*;
 
 import com.example.SpringBackend.database.enums.WorkerDept;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Workers {
 
     @Id
-    @GeneratedValue
-    private long worker_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String worker_id;
     private String name;
     private String phone;
     private String address;
@@ -31,7 +33,7 @@ public class Workers {
         this.department = department;
     }
 
-    public Workers(long worker_id, String name, String phone, String address, WorkerDept department,
+    public Workers(String worker_id, String name, String phone, String address, WorkerDept department,
             Managers manager_ref, Towers tower_ref) {
         this.worker_id = worker_id;
         this.name = name;
@@ -42,11 +44,11 @@ public class Workers {
         this.tower_ref = tower_ref;
     }
 
-    public long getWorker_id() {
+    public String getWorker_id() {
         return worker_id;
     }
 
-    public void setWorker_id(long worker_id) {
+    public void setWorker_id(String worker_id) {
         this.worker_id = worker_id;
     }
 

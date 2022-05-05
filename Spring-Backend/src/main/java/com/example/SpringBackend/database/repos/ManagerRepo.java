@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface ManagerRepo extends JpaRepository<Managers, Long> {
+public interface ManagerRepo extends JpaRepository<Managers, String> {
 
     @Query(value = "select m.* from managers m,auth a where m.auth_id = a.auth_id and a.email = ?1",nativeQuery = true)
     Optional<Managers> findByEmail(String email);

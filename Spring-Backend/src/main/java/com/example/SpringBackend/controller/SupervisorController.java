@@ -16,27 +16,17 @@ public class SupervisorController {
     private SupervisorService supervisorService;
 
     @GetMapping("/profile/get/{id}")
-    public ResponseEntity<String> getSupervisorById(@PathVariable long id){
-        try{
-            Supervisor supervisor = supervisorService.getSupervisorById(id);
-            return new ResponseEntity<>(supervisor.toString(),HttpStatus.OK);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Supervisor> getSupervisorById(@PathVariable String id){
+        Supervisor supervisor = supervisorService.getSupervisorById(id);
+        if(supervisor == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(supervisor,HttpStatus.OK);
     }
 
     @GetMapping("/profile/email/{email}")
     public ResponseEntity<Supervisor> getSupervisorByEmail(@PathVariable String email){
-        try{
-            Supervisor supervisor = supervisorService.getSupervisorByEmail(email);
-            return new ResponseEntity<>(supervisor,HttpStatus.OK);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        Supervisor supervisor = supervisorService.getSupervisorByEmail(email);
+        if (supervisor == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(supervisor,HttpStatus.OK);
     }
 
     @PutMapping("/profile/update/supervisor")

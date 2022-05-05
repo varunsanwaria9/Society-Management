@@ -28,7 +28,7 @@ public class ComplainController {
     }
 
     @GetMapping(path = "/get/{id}")
-    public ResponseEntity<Complains> getComplainByID(@PathVariable Long id){
+    public ResponseEntity<Complains> getComplainByID(@PathVariable String id){
         Complains complain = complainService.getComplainByID(id);
         if(complain == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -22,10 +22,9 @@ public class ManagerService {
         return managerRepo.findAll();
     }
 
-    public Managers getManagerById(long id) throws Exception{
+    public Managers getManagerById(String id) throws Exception{
         Optional<Managers> managers = managerRepo.findById(id);
-        if(managers.isEmpty()) throw new Exception("No manager found");
-        return managers.get();
+        return managers.orElse(null);
     }
 
     public Managers getManagerByEmail(String email) throws Exception {
@@ -38,7 +37,7 @@ public class ManagerService {
         return managerRepo.save(managers);
     }
 
-    public void deleteManager(long id) throws Exception {
+    public void deleteManager(String id) throws Exception {
         Optional<Managers> managers = managerRepo.findById(id);
         if(managers.isEmpty()) throw new Exception("No manager found");
         managerRepo.delete(managers.get());

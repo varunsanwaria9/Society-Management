@@ -31,7 +31,7 @@ export default function ResidentNavbar() {
                         <button className="navBtn" onClick={() => handleRoute('/residents/')}>Home</button>
                     </li>
                     <li className="nav-item">
-                        <button className="navBtn">Bills</button>
+                        <button className="navBtn" onClick={() => handleRoute('/residents/bills')}>Bills</button>
                     </li>
                     <li className="nav-item">
                         <button className="navBtn">Complains</button>

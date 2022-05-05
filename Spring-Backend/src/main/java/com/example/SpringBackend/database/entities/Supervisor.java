@@ -1,13 +1,16 @@
 package com.example.SpringBackend.database.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
 public class Supervisor {
-    
+
     @Id
-    @GeneratedValue
-    private long supervisor_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String supervisor_id;
     private String name;
     private String phone;
     private String address;
@@ -25,7 +28,7 @@ public class Supervisor {
         this.auth = auth;
     }
 
-    public Supervisor(long supervisor_id, String name, String phone, String address, Auth auth) {
+    public Supervisor(String supervisor_id, String name, String phone, String address, Auth auth) {
         this.supervisor_id = supervisor_id;
         this.name = name;
         this.phone = phone;
@@ -33,11 +36,11 @@ public class Supervisor {
         this.auth = auth;
     }
 
-    public long getSupervisor_id() {
+    public String getSupervisor_id() {
         return this.supervisor_id;
     }
 
-    public void setSupervisor_id(long supervisor_id) {
+    public void setSupervisor_id(String supervisor_id) {
         this.supervisor_id = supervisor_id;
     }
 

@@ -29,7 +29,7 @@ public class ManagerController {
     private ManagerService managerService;
 
     @GetMapping("/residences/id/{id}")
-    public ResponseEntity<Residences> getResidenceById(@PathVariable long id){
+    public ResponseEntity<Residences> getResidenceById(@PathVariable String id){
         Residences residences = residenceService.getResidenceById(id);
         if(residences == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -62,14 +62,12 @@ public class ManagerController {
     }
 
     @GetMapping("/profile/get/{id}")
-    public ResponseEntity<Managers> getManagerById(@PathVariable long id) throws Exception {
-        try{
-            Managers managers = managerService.getManagerById(id);
-            return new ResponseEntity<>(managers,HttpStatus.OK);
+    public ResponseEntity<Managers> getManagerById(@PathVariable String id) throws Exception {
+        Managers managers = managerService.getManagerById(id);
+        if (managers == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(managers,HttpStatus.OK);
     }
 
     @PutMapping("/profile/update")

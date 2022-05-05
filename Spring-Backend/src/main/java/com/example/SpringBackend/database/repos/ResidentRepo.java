@@ -6,7 +6,7 @@ import com.example.SpringBackend.database.entities.Residents;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface ResidentRepo extends JpaRepository<Residents, Long> {
+public interface ResidentRepo extends JpaRepository<Residents, String> {
 
     @Query(value = "select t.* from residences r,residents t where t.residence_ref = r.residence_id and flat_no = ?1",
         nativeQuery = true)

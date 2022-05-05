@@ -4,6 +4,6 @@ import com.example.SpringBackend.database.entities.Bills;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BillRepo extends JpaRepository<Bills,Long>{
+public interface BillRepo extends JpaRepository<Bills,String>{
     
 }

@@ -22,23 +22,21 @@ public class SupervisorService {
         return supervisorRepo.findAll();
     }
 
-    public Supervisor getSupervisorById(long id) throws Exception{
+    public Supervisor getSupervisorById(String id){
         Optional<Supervisor> supervisor = supervisorRepo.findById(id);
-        if (supervisor.isEmpty()) throw new Exception("No Supervisor found");
-        return supervisor.get();
+        return supervisor.orElse(null);
     }
 
-    public Supervisor getSupervisorByEmail(String email) throws Exception{
+    public Supervisor getSupervisorByEmail(String email){
         Optional<Supervisor> supervisor = supervisorRepo.findByEmail(email);
-        if(supervisor.isEmpty()) throw new Exception("No supervisor found");
-        return supervisor.get();
+        return supervisor.orElse(null);
     }
 
     public Supervisor updateSupervisor(Supervisor supervisor){
         return supervisorRepo.save(supervisor);
     }
 
-    public void deleteSupervisor(long id) throws Exception {
+    public void deleteSupervisor(String id) throws Exception {
         Optional<Supervisor> supervisor = supervisorRepo.findById(id);
         if(supervisor.isEmpty()) throw new Exception("No supervisor found");
         supervisorRepo.delete(supervisor.get());

@@ -3,13 +3,15 @@ package com.example.SpringBackend.database.entities;
 import javax.persistence.*;
 
 import com.example.SpringBackend.database.enums.ComplainStage;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Complains {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long complain_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String complain_id;
     @Column(nullable = false)
     private String details;
     private String raised_on;
@@ -29,7 +31,7 @@ public class Complains {
         this.status = status;
     }
     
-    public Complains(long complain_id, String details, String raised_on, ComplainStage status,
+    public Complains(String complain_id, String details, String raised_on, ComplainStage status,
             Residences residence_ref) {
         this.complain_id = complain_id;
         this.details = details;
@@ -38,11 +40,11 @@ public class Complains {
         this.residence_ref = residence_ref;
     }
 
-    public long getComplain_id() {
+    public String getComplain_id() {
         return this.complain_id;
     }
 
-    public void setComplain_id(long complain_id) {
+    public void setComplain_id(String complain_id) {
         this.complain_id = complain_id;
     }
 

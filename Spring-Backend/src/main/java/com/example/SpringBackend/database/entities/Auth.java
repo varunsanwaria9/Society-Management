@@ -3,13 +3,15 @@ package com.example.SpringBackend.database.entities;
 import javax.persistence.*;
 
 import com.example.SpringBackend.database.enums.AuthRole;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Auth {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long auth_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String auth_id;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
@@ -28,7 +30,7 @@ public class Auth {
         this.roles = roles;
     }
     
-    public Auth(Long auth_id, String email, String password, AuthRole roles) {
+    public Auth(String auth_id, String email, String password, AuthRole roles) {
         this.auth_id = auth_id;
         this.email = email;
         this.password = password;
@@ -36,11 +38,11 @@ public class Auth {
     }
     
 
-    public Long getAuth_id() {
+    public String getAuth_id() {
         return this.auth_id;
     }
 
-    public void setAuth_id(Long auth_id) {
+    public void setAuth_id(String auth_id) {
         this.auth_id = auth_id;
     }
 

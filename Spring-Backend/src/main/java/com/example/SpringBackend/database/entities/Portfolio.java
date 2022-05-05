@@ -1,13 +1,16 @@
 package com.example.SpringBackend.database.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
 public class Portfolio {
-    
+
     @Id
-    @GeneratedValue
-    private long portfolio_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String portfolio_id;
     private String post;
     private int tenure;
 
@@ -20,18 +23,18 @@ public class Portfolio {
         this.tenure = tenure;
     }
 
-    public Portfolio(long portfolio_id, String post, int tenure) {
+    public Portfolio(String portfolio_id, String post, int tenure) {
         this.portfolio_id = portfolio_id;
         this.post = post;
         this.tenure = tenure;
     }
 
 
-    public Long getPortfolio_id() {
+    public String getPortfolio_id() {
         return this.portfolio_id;
     }
 
-    public void setPortfolio_id(Long portfolio_id) {
+    public void setPortfolio_id(String portfolio_id) {
         this.portfolio_id = portfolio_id;
     }
 
