@@ -1,5 +1,6 @@
 package com.example.SpringBackend;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -111,13 +112,13 @@ public class SpringBackendApplication {
 			w4.setTower_ref(t2);
 			workerRepo.saveAll(List.of(w3, w4));
 
-			Bills b1 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
+			Bills b1 = new Bills("Maintenance",1200L,BillStage.GENERATED,LocalDate.now().toString(),"");
 			b1.setResidence_ref(r1);
-			Bills b2 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
+			Bills b2 = new Bills("Maintenance",1200L,BillStage.GENERATED,LocalDate.now().toString(),"");
 			b2.setResidence_ref(r2);
-			Bills b3 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
-			b3.setResidence_ref(r3);
-			Bills b4 = new Bills("Maintenance",1200L,BillStage.GENERATED,"");
+			Bills b3 = new Bills("Maintenance",1200L,BillStage.GENERATED,LocalDate.now().toString(),"");
+			b3.setResidence_ref(r1);
+			Bills b4 = new Bills("Maintenance",1200L,BillStage.PAID, LocalDate.now().toString(), LocalDate.now().toString());
 			b4.setResidence_ref(r4);
 			billRepo.saveAll(List.of(b1, b2, b3, b4));
 

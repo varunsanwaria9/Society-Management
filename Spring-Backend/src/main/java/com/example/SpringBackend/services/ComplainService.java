@@ -20,15 +20,12 @@ public class ComplainService {
         return complainRepo.save(complains);
     }
 
-    public Complains getComplainByID(Long id){
+    public Complains getComplainByID(String id){
         Optional<Complains> complain = complainRepo.findById(id);
-        if(complain.isEmpty()){
-            return null;
-        }
-        return complain.get();
+        return complain.orElse(null);
     }
 
-    public Complains checkedComplains(Long id){
+    public Complains checkedComplains(String id){
         Optional<Complains> complain = complainRepo.findById(id);
         if(complain.isEmpty()){
             return null;
@@ -38,7 +35,7 @@ public class ComplainService {
         return complainRepo.save(c);
     }
 
-    public Complains solvedComplains(Long id){
+    public Complains solvedComplains(String id){
         Optional<Complains> complain = complainRepo.findById(id);
         if(complain.isEmpty()){
             return null;

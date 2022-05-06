@@ -18,6 +18,7 @@ public class Bills {
     private long amount;
     @Enumerated(EnumType.STRING)
     private BillStage status;
+    private String generated_on;
     private String paid_on;
     @OneToOne
     @JoinColumn(name = "residence_ref")
@@ -26,18 +27,20 @@ public class Bills {
     public Bills() {
     }
 
-    public Bills(String details, long amount, BillStage status, String paid_on) {
+    public Bills(String details, long amount, BillStage status, String generated_on, String paid_on) {
         this.details = details;
         this.amount = amount;
         this.status = status;
+        this.generated_on = generated_on;
         this.paid_on = paid_on;
     }
 
-    public Bills(String bill_id, String details, long amount, BillStage status, String paid_on, Residences residence_ref) {
+    public Bills(String bill_id, String details, long amount, BillStage status, String generated_on, String paid_on, Residences residence_ref) {
         this.bill_id = bill_id;
         this.details = details;
         this.amount = amount;
         this.status = status;
+        this.generated_on = generated_on;
         this.paid_on = paid_on;
         this.residence_ref = residence_ref;
     }
@@ -72,6 +75,14 @@ public class Bills {
 
     public void setStatus(BillStage status) {
         this.status = status;
+    }
+
+    public String getGenerated_on() {
+        return generated_on;
+    }
+
+    public void setGenerated_on(String generated_on) {
+        this.generated_on = generated_on;
     }
 
     public String getPaid_on() {
