@@ -48,7 +48,7 @@ export default function BillsIndexPage() {
                                 <p>{bill.status}</p>
                             </div>
                             <div className="d-flex justify-content-center">
-                                <button className="btn">Pay Now</button>
+                                <button className="btn resident-bill-index-btn">Pay Now</button>
                             </div>
                         </div>
                     )

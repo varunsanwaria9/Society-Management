@@ -10,7 +10,7 @@ import ResidentProfileMain from './Components/Residents/Profile/IndexPage'
 import ResidentProfilePassword from './Components/Residents/Profile/Password';
 import ResidentProfileUpdate from './Components/Residents/Profile/Update';
 import ResidentBillPage from './Components/Residents/Bills/IndexPage';
-
+import ResidentComplainMain from './Components/Residents/Complains/Main';
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
           <Route path='/residents/profile/password' element={<ResidentProfilePassword />}></Route>
           <Route path='/residents/profile/update' element={<ResidentProfileUpdate />}></Route>
           <Route path='/residents/bills' element={<ResidentBillPage />}></Route>
+          <Route path='/residents/complains' element={<ResidentComplainMain />}></Route>
 
         </Routes>
     </Router>

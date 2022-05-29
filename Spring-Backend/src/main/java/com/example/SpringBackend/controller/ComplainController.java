@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(path = "/complain")
 @CrossOrigin
+@RequestMapping(path = "/complain")
 public class ComplainController {
     
     @Autowired
@@ -34,6 +36,13 @@ public class ComplainController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(complain,HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/raised/{id}")
+    public ResponseEntity<List<Complains>> getResidentComplainsRaised(@PathVariable String id){
+        List<Complains> complains = complainService.getResidentComplainRaised(id);
+        if (complains.size() == 0) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(complains,HttpStatus.OK);
     }
 
 }

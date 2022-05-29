@@ -1,6 +1,7 @@
 .resident-bill-index-main{
     width: 100vw;
     height: 100vh;
+    background-color: lightgray;
 }
 
 .resident-bill-index-body{
@@ -16,42 +17,36 @@
     padding: 2vh 4vw 2vh 2vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    border: 1px solid #DCDCDC;
-    box-shadow: 0px 0px 10px #DCDCDC;
+    box-shadow: 0px 0px 10px gray;
     transition: 1s;
 }
 
 .resident-bill-index-card:hover{
-    background-color: aqua;
+    background-color: gray;
     transform: translate(-2%, -2%);
-    box-shadow: 0px 10px 10px #DCDCDC;
+    box-shadow: 0px 10px 10px lightgray;
 }
 
 .resident-bill-index-card p{
     padding-right: 3%;
     font-weight: 500;
     transition: 3s;
-    color: aqua;
+    color: white;
 }
 
 .resident-bill-index-card:hover p{
+    color: lightgray;
+}
+
+.resident-bill-index-btn{
+    border: 1px solid gray;
     color: white;
 }
 
-.resident-bill-index-card button{
-    border: 1px solid aqua;
-    color: aqua;
-    display: flex;
-    justify-content: center;
-}
-
-.resident-bill-index-card:hover button{
+.resident-bill-index-card:hover .resident-bill-index-btn{
     border: 1px solid white;
-    color: white;
 }
-
-.resident-bill-index-card:hover button:hover{
-    background-color: white;
-    color: aqua;
+.resident-bill-index-card:hover .resident-bill-index-btn:hover{
+    background-color: lightgrey;
+    color: gray;
 }

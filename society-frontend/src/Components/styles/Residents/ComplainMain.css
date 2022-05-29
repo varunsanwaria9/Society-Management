@@ -1,0 +1,19 @@
+.resident-complain-main-body{
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+}
+.resident-complain-main-card{
+    width: 20%;
+    margin: 2vh 2vw;
+    padding: 2vh 1vw;
+    background-color: lightgray;
+    box-shadow: 0px 0px 10px gray;
+}
+.resident-complain-main-input{
+    width: 70%;
+    height: 4vh;
+    margin: 0vh 1vw;
+    border: none;
+    outline: none;
+}
