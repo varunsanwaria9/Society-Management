@@ -1,7 +1,10 @@
 package com.example.SpringBackend.controller;
 
 import com.example.SpringBackend.database.entities.Complains;
+import com.example.SpringBackend.database.enums.ComplainStage;
+import com.example.SpringBackend.database.models.ComplainModel;
 import com.example.SpringBackend.services.ComplainService;
+import com.example.SpringBackend.services.ResidentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,9 +27,12 @@ public class ComplainController {
     
     @Autowired
     private ComplainService complainService;
+    @Autowired
+    private ResidentService residentService;
 
     @PostMapping(path = "/add")
-    public ResponseEntity<Complains> addComplains(@RequestBody Complains complains) {
+    public ResponseEntity<Complains> addComplains(@RequestBody ComplainModel model) {
+    	Complains complains = new Complains(model.getValue(),new Date().toString(),ComplainStage.RAISED);
         return new ResponseEntity<>(complainService.addComplains(complains),HttpStatus.CREATED);
     }
 

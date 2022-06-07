@@ -7,7 +7,7 @@ import com.example.SpringBackend.database.entities.*;
 import com.example.SpringBackend.database.enums.AuthRole;
 import com.example.SpringBackend.database.models.*;
 import com.example.SpringBackend.database.repos.*;
-
+import com.example.SpringBackend.services.ManagerService;
 import com.example.SpringBackend.services.ResidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,9 +25,12 @@ public class AllController {
 
     @Autowired
     private ResidentService residentService;
+    
+    @Autowired
+    private ManagerService managerService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginModel loginModel) {
+    public ResponseEntity<String> login(@RequestBody LoginModel loginModel) throws Exception {
         Optional<Auth> auth = authRepo.findByEmail(loginModel.getEmail());
         if(auth.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -35,7 +38,14 @@ public class AllController {
         if(!auth.get().getPassword().equals(loginModel.getPassword())){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>( residentService.findByEmail(loginModel.getEmail()).getResident_id() + " " + auth.get().getRoles().toString(), HttpStatus.OK);
+        Auth a1 = auth.get();
+        if(a1.getRoles() == AuthRole.RESIDENT)
+        	return new ResponseEntity<>( residentService.findByEmail(loginModel.getEmail()).getResident_id() + " " + auth.get().getRoles().toString(), HttpStatus.OK);
+        else if(a1.getRoles() == AuthRole.MANAGER)
+        	return new ResponseEntity<>( managerService.getManagerByEmail(loginModel.getEmail()).getManager_id() + " " + auth.get().getRoles().toString(),HttpStatus.OK);
+        else if(a1.getRoles() == AuthRole.SUPERVISOR)
+        	return new ResponseEntity<>(HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/updatePassword")
