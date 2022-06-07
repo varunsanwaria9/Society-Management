@@ -17,8 +17,13 @@ const getResidentComplainRaised = () => {
 	return axios.get(`${url}/raised/${id}`);
 }
 
+const getAllRaisedComplains = () => {
+	return axios.get(`${url}/allRaised/`)
+}
+
 export default {
 	addComplain,
 	getComplainById,
-	getResidentComplainRaised
+	getResidentComplainRaised,
+	getAllRaisedComplains
 }

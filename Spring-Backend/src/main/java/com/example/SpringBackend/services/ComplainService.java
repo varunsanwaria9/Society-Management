@@ -37,4 +37,8 @@ public class ComplainService {
         }
         return complainRepo.getResidentComplainRaised(resident.get().getResidence_ref().getResidence_id());
     }
+    
+    public List<Complains> getAllRaisedComplains(){
+    	return complainRepo.getAllRaisedComplains();
+    }
 }

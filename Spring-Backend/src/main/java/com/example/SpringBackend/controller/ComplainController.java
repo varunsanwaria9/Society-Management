@@ -27,8 +27,6 @@ public class ComplainController {
     
     @Autowired
     private ComplainService complainService;
-    @Autowired
-    private ResidentService residentService;
 
     @PostMapping(path = "/add")
     public ResponseEntity<Complains> addComplains(@RequestBody ComplainModel model) {
@@ -52,4 +50,8 @@ public class ComplainController {
         return new ResponseEntity<>(complains,HttpStatus.OK);
     }
 
+    @GetMapping(path = "/allRaised")
+    public ResponseEntity<List<Complains>> getAllRaisedComplains(){
+    	return new ResponseEntity<>(complainService.getAllRaisedComplains(),HttpStatus.OK);
+    }
 }

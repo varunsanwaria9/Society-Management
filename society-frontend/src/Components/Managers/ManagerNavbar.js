@@ -23,7 +23,7 @@ export default function ManagerNavbar() {
 						<button className="nav-link" onClick={() => handleRoute('/managers/')}>Home</button>
 					</li>
 					<li className="nav-item">
-						<button className="nav-link">Complains</button>
+						<button className="nav-link" onClick={() => handleRoute('/managers/complains')}>Complains</button>
 					</li>
 					<li className="nav-item">
 						<button className="nav-link">Bills</button>
