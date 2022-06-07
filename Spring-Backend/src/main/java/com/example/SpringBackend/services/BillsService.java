@@ -42,4 +42,7 @@ public class BillsService {
         return billRepo.billsByBetnDatesResidence(billDateModel.getStartDate(), billDateModel.getEndDate(), residents.get().getResidence_ref().getResidence_id());
      }
 
+    public List<Bills> allGeneratedBills(){
+    	return billRepo.allGeneratedBills();
+    }
 }

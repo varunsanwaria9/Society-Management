@@ -1,13 +1,19 @@
 package com.example.SpringBackend.controller;
 
 import com.example.SpringBackend.database.entities.Bills;
+import com.example.SpringBackend.database.entities.Residences;
+import com.example.SpringBackend.database.enums.BillStage;
+import com.example.SpringBackend.database.models.BillAddModel;
 import com.example.SpringBackend.database.models.BillDateModel;
 import com.example.SpringBackend.services.BillsService;
+import com.example.SpringBackend.services.ResidenceService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -17,9 +23,16 @@ public class BillsController {
 
     @Autowired
     private BillsService billsService;
+    @Autowired
+    private ResidenceService residenceService;
+
 
     @PostMapping("/add")
-    public ResponseEntity<Bills> addBills(@RequestBody Bills bills){
+    public ResponseEntity<Bills> addBills(@RequestBody BillAddModel model){
+    	Bills bills = new Bills(model.getDetails(),model.getAmount(),BillStage.GENERATED,LocalDate.now().toString(),"");
+    	Residences residences = residenceService.getResidenceByFlatNo(model.getFlat_no());
+    	if(residences == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	bills.setResidence_ref(residences);
         return new ResponseEntity<>(billsService.addBills(bills), HttpStatus.CREATED);
     }
 
@@ -44,4 +57,8 @@ public class BillsController {
         return new ResponseEntity<>(bills,HttpStatus.OK);
     }
 
+    @GetMapping("/generated")
+    public ResponseEntity<List<Bills>> allGeneratedBill(){
+    	return new ResponseEntity<>(billsService.allGeneratedBills(),HttpStatus.OK);
+    }
 }

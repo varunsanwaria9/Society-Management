@@ -1,0 +1,12 @@
+.managers-bill-model-body{
+		top:0;
+		left: 0;
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #00000066;
+}
