@@ -16,6 +16,7 @@ import ManagerHome from './Components/Managers/ManagerHome';
 import ManagerProfileMain from './Components/Managers/Profile/';
 import ManagerComplainMain from "./Components/Managers/Complains/";
 import ManagerBillsMain from "./Components/Managers/Bills/";
+import ManagerStaffMain from './Components/Managers/Staffs/'
 
 function App() {
 	return (
@@ -38,6 +39,7 @@ function App() {
 				<Route path='/managers/profile' element={<ManagerProfileMain />}></Route>
 				<Route path='/managers/complains' element={<ManagerComplainMain />}></Route>
 				<Route path='/managers/bills' element={<ManagerBillsMain />}></Route>
+				<Route path='/managers/staffs' element={<ManagerStaffMain />}></Route>
 
 			</Routes>
 		</Router>
