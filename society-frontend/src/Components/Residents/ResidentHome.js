@@ -2,7 +2,7 @@ import React from 'react';
 import ResidentNavbar from './ResidentNavbar';
 import { Canvas } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
-import Person from '../3dModels/Person1'
+import Parent from "../3dModels/Parent";
 
 import '../styles/Residents/HomePage.css'
 
@@ -14,8 +14,8 @@ export default function ResidentHome() {
           <Canvas className='resident-home-canvas'>
             <ambientLight intensity={0.5} />
             <directionalLight position={[-2, 5, 2]} />
-            <Person />
-            <Html>
+				<Parent />    
+		<Html>
               <div className='resident-homed-div'>
                 <p className='resident-home-msg'>Welcome</p>
                 <p className='resident-home-msg'>Resident</p>
