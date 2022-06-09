@@ -1,0 +1,41 @@
+.manager-body{
+		width: 100vw;
+		height: 100vh;
+		background-color: lightgray;
+}
+.manager-main-box{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+}
+.manager-complain-box{
+		width: 75vw;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+		text-align: center;
+		margin: 2vh 0vw;
+		padding: 1vh 2vw;
+		background-color: darkgray;
+		color: whitesmoke;
+}
+.manager-complain-update-body{
+		top: 0;
+		left: 0;
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+		background-color: #00000066;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+}
+.manager-complain-update-box{
+		width: 40vw;
+		height: fit-content;
+		padding: 2vh 2vw;
+		background-color: whitesmoke;
+}
+

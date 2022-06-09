@@ -18,16 +18,19 @@ export default function SupervisorNavbar() {
 			<div className="collapse navbar-collapse" id="navbarNav">
 				<ul className="navbar-nav">
 					<li className="nav-item">
-						<button className="navBtn" onClick={() => handleRoute('/residents/')}>Home</button>
+						<button className="navBtn">Home</button>
 					</li>
 					<li className="nav-item">
-						<button className="navBtn" onClick={() => handleRoute('/residents/bills')}>Bills</button>
+						<button className="navBtn">Committes</button>
 					</li>
 					<li className="nav-item">
-						<button className="navBtn" onClick={() => handleRoute('/residents/complains')}>Complains</button>
+						<button className="navBtn">Users</button>
 					</li>
+						<li className='nav-item'>
+								<button className='navBtn'>Managers</button>
+						</li>
 					<li className="nav-item">
-						<button className="navBtn" onClick={() => handleRoute('/residents/profile')}>Profile</button>
+						<button className="navBtn">Profile</button>
 					</li>
 					<li className="nav-item">
 						<button className="navBtn" onClick={() => doLogout()}>Logout</button>

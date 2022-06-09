@@ -22,7 +22,7 @@ public class ManagerService {
         return managerRepo.findAll();
     }
 
-    public Managers getManagerById(String id) throws Exception{
+    public Managers getManagerById(String id){
         Optional<Managers> managers = managerRepo.findById(id);
         return managers.orElse(null);
     }

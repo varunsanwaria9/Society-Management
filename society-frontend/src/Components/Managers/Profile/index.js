@@ -26,33 +26,18 @@ export default function ManagerProfileMain() {
 	return (
 		<div className="manager-profile-main-body">
 			<ManagerNavbar />
-			<div>
-				<div>
-					<button className="btn btn-primary">Update Profile</button>
-					<button className="btn btn-primary">Update Password</button>
-					<button className="btn btn-danger">Delete Profile</button>
+			<div className='residentProfileBody'>
+				<div className='residentProfileBodyLeft'>
+					<button className="btn btn-primary w-25 my-2">Update Profile</button>
+					<button className="btn btn-primary w-25 my-2">Update Password</button>
+					<button className="btn btn-danger w-25 my-2">Delete Profile</button>
 				</div>
-				<div>
-					<div>
-						<p>Name</p>
-						<p>{details.name}</p>
-					</div>
-					<div>
-						<p>Address</p>
-						<p>{details.address}</p>
-					</div>
-					<div>
-						<p>Phone Number</p>
-						<p>{details.phone}</p>
-					</div>
-					<div>
-						<p>Email</p>
-						<p>{auth.email}</p>
-					</div>
-					<div>
-						<p>Tower</p>
-						<p>{tower.tower_name}</p>
-					</div>
+				<div className='residentProfileBodyRight'>
+						<p className='residentProfileBodyP'>Name <span>:{details.name}</span></p>
+						<p className='residentProfileBodyP'>Address <span>:{details.address}</span></p>
+						<p className='residentProfileBodyP'>Phone Number <span>:{details.phone}</span></p>
+						<p className='residentProfileBodyP'>Email <span>:{auth.email}</span></p>
+						<p className='residentProfileBodyP'>Tower <span>:{tower.tower_name}</span></p>
 				</div>
 			</div>
 		</div>

@@ -41,4 +41,9 @@ public class ComplainService {
     public List<Complains> getAllRaisedComplains(){
     	return complainRepo.getAllRaisedComplains();
     }
+    
+    public Complains updateComplains(Complains complains) {
+    	return complainRepo.save(complains);
+    }
+    
 }

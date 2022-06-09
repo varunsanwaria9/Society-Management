@@ -2,7 +2,6 @@ import axios from "axios";
 
 const url = "http://localhost:8080/complain";
 
-
 const addComplain = (complain) => {
 	return axios.post(`${url}/add`, complain);
 }
@@ -21,9 +20,14 @@ const getAllRaisedComplains = () => {
 	return axios.get(`${url}/allRaised/`)
 }
 
+const updateComplains = value => {
+	return axios.put(`${url}/update`, value)
+}
+
 export default {
 	addComplain,
 	getComplainById,
 	getResidentComplainRaised,
-	getAllRaisedComplains
+	getAllRaisedComplains,
+	updateComplains
 }

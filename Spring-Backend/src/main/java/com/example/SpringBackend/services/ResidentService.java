@@ -27,14 +27,13 @@ public class ResidentService {
     public Residents updateResidents(Residents residents){
         return residentRepo.save(residents);
     }
-
+    
     public Residents findByEmail(String email){
         return residentRepo.findByEmail(email);
     }
 
-    public boolean deleteResidents(String id){
+    public void deleteResidents(String id){
         residentRepo.deleteById(id);
-        return true;
     }
     
     public List<Residents> getAllResidentsByFlatNo(String flatNo){

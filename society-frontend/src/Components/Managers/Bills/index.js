@@ -6,12 +6,12 @@ import BillsService from '../../../services/BillsService';
 export default function ManagerBillsMain() {
 
 	const [bills, setBills] = useState([])
-    const [showModel,setShowModel] = useState(false)
+	const [showModel, setShowModel] = useState(false)
 
 	useEffect(() => {
 		BillsService.allGeneratedBills()
 			.then(res => {
-				if(res.status === 200){
+				if (res.status === 200) {
 					setBills(res.data)
 				}
 			})
@@ -23,16 +23,16 @@ export default function ManagerBillsMain() {
 	const displayModel = () => setShowModel(!showModel)
 
 	return (
-		<div>
+		<div className='manager-body'>
 			<ManagerNavbar />
 			<div className='d-flex flex-direction-row'>
 				<p>Search Value</p>
 				<button className='btn btn-danger' onClick={displayModel}>+ Create Bills</button>
 			</div>
-			<div className='d-flex flex-direction-row'>
+			<div className='manager-main-box'>
 				{bills.map(bill => {
 					return (
-						<div key={bill.bill_id} className='px-2'>
+						<div key={bill.bill_id} className='manager-complain-box'>
 							<p>{bill.details}</p>
 							<p>{bill.amount}</p>
 							<p>{bill.residence_ref.flat_no}</p>

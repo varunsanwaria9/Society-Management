@@ -60,4 +60,11 @@ public class StaffService {
 		workerRepo.deleteById(id);
 	}
 	
+	public List<Watchmen> getWatchmenByTower(String towerRef){
+		return watchmenRepo.getWatchmenByTower(towerRef);
+	}
+	
+	public List<Workers> getWorkersByTower(String towerRef){
+		return workerRepo.getWorkersByTower(towerRef);
+	}
 }

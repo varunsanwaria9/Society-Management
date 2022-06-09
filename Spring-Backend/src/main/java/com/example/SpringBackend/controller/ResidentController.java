@@ -32,4 +32,9 @@ public class ResidentController {
         return new ResponseEntity<>(residentService.updateResidents(residents), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteResidents(@PathVariable String id){
+    	residentService.deleteResidents(id);
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

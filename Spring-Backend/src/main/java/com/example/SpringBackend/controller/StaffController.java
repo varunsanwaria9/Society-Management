@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.SpringBackend.database.entities.Managers;
 import com.example.SpringBackend.database.entities.Watchmen;
 import com.example.SpringBackend.database.entities.Workers;
+import com.example.SpringBackend.services.ManagerService;
 import com.example.SpringBackend.services.StaffService;
 
 @RestController
@@ -24,6 +26,8 @@ public class StaffController {
 
 	@Autowired
 	private StaffService staffService;
+	@Autowired
+	private ManagerService managerService;
 	
 	@GetMapping("/watchmen/all")
 	public ResponseEntity<List<Watchmen>> getAllWatchmen(){
@@ -52,6 +56,15 @@ public class StaffController {
 		staffService.deleteWatchmen(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+
+	@GetMapping("/watchmen/tower/{id}")
+	public ResponseEntity<List<Watchmen>> watchmenByTower(@PathVariable String id){
+		Managers managers = managerService.getManagerById(id);
+		if(managers == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(staffService.getWatchmenByTower(managers.getTower_ref().getTower_id()),HttpStatus.OK);
+	}
 	
 	@PostMapping("/worker/add")
 	public ResponseEntity<Workers> addWorkers(@RequestBody Workers workers){
@@ -78,5 +91,14 @@ public class StaffController {
 	public ResponseEntity<?> deleteWorkers(@PathVariable String id){
 		staffService.deleteWorkers(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/worker/tower/{id}")
+	public ResponseEntity<List<Workers>> workerByTower(@PathVariable String id){
+		Managers managers = managerService.getManagerById(id);
+		if(managers == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(staffService.getWorkersByTower(managers.getTower_ref().getTower_id()),HttpStatus.OK);
 	}
 }

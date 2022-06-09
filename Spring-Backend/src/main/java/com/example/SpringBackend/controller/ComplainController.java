@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +28,13 @@ public class ComplainController {
     
     @Autowired
     private ComplainService complainService;
-
+    @Autowired
+    private ResidentService residentService;
+    
     @PostMapping(path = "/add")
     public ResponseEntity<Complains> addComplains(@RequestBody ComplainModel model) {
     	Complains complains = new Complains(model.getValue(),new Date().toString(),ComplainStage.RAISED);
+    	complains.setResidence_ref(residentService.getResidentsById(model.getRef()).getResidence_ref());
         return new ResponseEntity<>(complainService.addComplains(complains),HttpStatus.CREATED);
     }
 
@@ -53,5 +57,10 @@ public class ComplainController {
     @GetMapping(path = "/allRaised")
     public ResponseEntity<List<Complains>> getAllRaisedComplains(){
     	return new ResponseEntity<>(complainService.getAllRaisedComplains(),HttpStatus.OK);
+    }
+    
+    @PutMapping(path = "/update")
+    public ResponseEntity<Complains> updateComplains(@RequestBody Complains complains){
+    	return new ResponseEntity<>(complainService.updateComplains(complains),HttpStatus.OK);
     }
 }

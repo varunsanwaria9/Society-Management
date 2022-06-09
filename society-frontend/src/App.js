@@ -18,6 +18,8 @@ import ManagerComplainMain from "./Components/Managers/Complains/";
 import ManagerBillsMain from "./Components/Managers/Bills/";
 import ManagerStaffMain from './Components/Managers/Staffs/'
 
+import SupervisorHome from './Components/Supervisor/SupervisorHome'
+
 function App() {
 	return (
 		<Router>
@@ -40,6 +42,9 @@ function App() {
 				<Route path='/managers/complains' element={<ManagerComplainMain />}></Route>
 				<Route path='/managers/bills' element={<ManagerBillsMain />}></Route>
 				<Route path='/managers/staffs' element={<ManagerStaffMain />}></Route>
+
+				{/* Supervisor */}
+				<Route path='/supervisors' element={<SupervisorHome />}></Route>
 
 			</Routes>
 		</Router>
