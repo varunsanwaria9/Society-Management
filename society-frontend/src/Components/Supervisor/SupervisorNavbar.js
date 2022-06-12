@@ -1,6 +1,6 @@
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 export default function SupervisorNavbar() {
-    const handleRoute = (route) => {
+	const handleRoute = (route) => {
 		window.location.href = route;
 	}
 
@@ -26,11 +26,11 @@ export default function SupervisorNavbar() {
 					<li className="nav-item">
 						<button className="navBtn">Users</button>
 					</li>
-						<li className='nav-item'>
-								<button className='navBtn'>Managers</button>
-						</li>
+					<li className='nav-item'>
+						<button className='navBtn' onClick={() => handleRoute('/supervisors/manager')}>Managers</button>
+					</li>
 					<li className="nav-item">
-						<button className="navBtn">Profile</button>
+						<button className="navBtn" onClick={() => handleRoute('/supervisors/profile')}>Profile</button>
 					</li>
 					<li className="nav-item">
 						<button className="navBtn" onClick={() => doLogout()}>Logout</button>
@@ -39,5 +39,5 @@ export default function SupervisorNavbar() {
 			</div>
 		</nav>
 	)
-    }
-    
+}
+

@@ -18,4 +18,7 @@ public interface ResidentRepo extends JpaRepository<Residents, String> {
 
     @Query(value = "select r.* from residents r,auth a where r.auth_ref = a.auth_id and a.email = ?1", nativeQuery = true)
     Residents findByEmail(String email);
+    
+    @Query(value = "select * from residents where name like ?1",nativeQuery = true)
+    List<Residents> serachResidents(String search);
 }

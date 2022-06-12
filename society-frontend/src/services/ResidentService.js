@@ -22,10 +22,14 @@ const deleteResident = () => {
 	return axios.delete(`${url}/delete/${id}`)
 }
 
+const getAllNotices = () => {
+	return axios.get(`${url}/notice/all`)
+}
 
 export default {
 	detailsByEmail,
 	detailsById,
 	update,
-	deleteResident
+	deleteResident,
+	getAllNotices
 }

@@ -22,9 +22,6 @@ public class Residents {
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "portfolio_ref")
     private Portfolio portfolio;
-    @Column
-    @ElementCollection(targetClass = Committee.class)
-    private List<Committee> committee;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "auth_ref",nullable = false)
     private Auth auth;
@@ -32,22 +29,19 @@ public class Residents {
     public Residents() {
     }
 
-    public Residents(String name, String phone_no, Portfolio portfolio, List<Committee> committee, Auth auth) {
+    public Residents(String name, String phone_no, Portfolio portfolio, Auth auth) {
         this.name = name;
         this.phone_no = phone_no;
         this.portfolio = portfolio;
-        this.committee = committee;
         this.auth = auth;
     }
 
-    public Residents(String resident_id, String name, String phone_no, Residences residence_ref, Portfolio portfolio,
-            List<Committee> committee, Auth auth) {
+    public Residents(String resident_id, String name, String phone_no, Residences residence_ref, Portfolio portfolio, Auth auth) {
         this.resident_id = resident_id;
         this.name = name;
         this.phone_no = phone_no;
         this.residence_ref = residence_ref;
         this.portfolio = portfolio;
-        this.committee = committee;
         this.auth = auth;
     }
 
@@ -91,13 +85,6 @@ public class Residents {
         this.portfolio = portfolio;
     }
 
-    public List<Committee> getCommittee() {
-        return committee;
-    }
-
-    public void setCommittee(List<Committee> committee) {
-        this.committee = committee;
-    }
 
     public Auth getAuth() {
         return auth;
@@ -109,7 +96,7 @@ public class Residents {
 
     @Override
     public String toString() {
-        return "Residents [auth=" + auth + ", committee=" + committee + ", name=" + name + ", phone_no=" + phone_no
+        return "Residents [auth=" + auth + ", name=" + name + ", phone_no=" + phone_no
                 + ", portfolio=" + portfolio + ", residence_ref=" + residence_ref + ", resident_id=" + resident_id
                 + "]";
     }

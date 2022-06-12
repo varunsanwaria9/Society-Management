@@ -86,4 +86,9 @@ public class ManagerController {
         }
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteManagers(@PathVariable String id){
+    	managerService.deleteManager(id);
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

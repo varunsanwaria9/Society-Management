@@ -14,11 +14,15 @@ import ResidentComplainMain from './Components/Residents/Complains/Main';
 
 import ManagerHome from './Components/Managers/ManagerHome';
 import ManagerProfileMain from './Components/Managers/Profile/';
+import ManagerProfileUpdate from "./Components/Managers/Profile/UpdateProfile";
 import ManagerComplainMain from "./Components/Managers/Complains/";
 import ManagerBillsMain from "./Components/Managers/Bills/";
-import ManagerStaffMain from './Components/Managers/Staffs/'
+import ManagerStaffMain from './Components/Managers/Staffs/';
 
-import SupervisorHome from './Components/Supervisor/SupervisorHome'
+import SupervisorHome from './Components/Supervisor/SupervisorHome';
+import SupervisorManager from "./Components/Supervisor/Managers/";
+import SupervisorProfileMain from './Components/Supervisor/Profile/';
+import SupervisorUserMain from './Components/Supervisor/Users/'
 
 function App() {
 	return (
@@ -39,12 +43,16 @@ function App() {
 				{/* Managers */}
 				<Route path='/managers' element={<ManagerHome />}></Route>
 				<Route path='/managers/profile' element={<ManagerProfileMain />}></Route>
+				<Route path='/managers/profile/update' element={<ManagerProfileUpdate />}></Route>
 				<Route path='/managers/complains' element={<ManagerComplainMain />}></Route>
 				<Route path='/managers/bills' element={<ManagerBillsMain />}></Route>
 				<Route path='/managers/staffs' element={<ManagerStaffMain />}></Route>
 
 				{/* Supervisor */}
 				<Route path='/supervisors' element={<SupervisorHome />}></Route>
+				<Route path='/supervisors/manager' element={<SupervisorManager />}></Route>
+				<Route path='/supervisors/profile' element={<SupervisorProfileMain />}></Route>
+				<Route path='/supervisors/users' element={<SupervisorUserMain />}></Route>
 
 			</Routes>
 		</Router>

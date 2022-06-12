@@ -14,7 +14,12 @@ export default function HomePage(){
                 case "RESIDENT":
                     window.location.href = "/residents";
                     break;
-                default:
+				case "MANAGER":
+						window.location.href = '/managers';
+						break;
+				case "SUPERVISOR":
+						window.location.href = '/supervisors'
+				default:
                     alert("Invalid user type");
                     break;
             }

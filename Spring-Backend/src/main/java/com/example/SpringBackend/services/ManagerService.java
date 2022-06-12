@@ -37,9 +37,7 @@ public class ManagerService {
         return managerRepo.save(managers);
     }
 
-    public void deleteManager(String id) throws Exception {
-        Optional<Managers> managers = managerRepo.findById(id);
-        if(managers.isEmpty()) throw new Exception("No manager found");
-        managerRepo.delete(managers.get());
+    public void deleteManager(String id){
+    	managerRepo.deleteById(id);
     }
 }

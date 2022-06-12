@@ -36,6 +36,7 @@ public class SpringBackendApplication {
 							 WatchmenRepo watchmenRepo,
 							 WorkerRepo workerRepo,
 							 BillRepo billRepo,
+							 NoticeRepo noticeRepo,
 							 ComplainRepo complainRepo,
 							 PortfolioRepo portfolioRepo) {
 
@@ -70,15 +71,15 @@ public class SpringBackendApplication {
 			Auth a1 = new Auth("john@mail.com","1234",AuthRole.RESIDENT);
 			Auth a2 = new Auth("jack@mail.com","1234",AuthRole.RESIDENT);
 			Auth a3 = new Auth("ahealy@mail.com","1234",AuthRole.RESIDENT);
-			Auth a4 = new Auth("mitchS@mail.com","1234",AuthRole.RESIDENT);
-
-			Residents u1 = new Residents("John","+917891234567",p1,List.of(),a1);
+			Auth a4 = new Auth("mitchS@mail.com","1234",AuthRole.RESIDENT);		
+			
+			Residents u1 = new Residents("John","+917891234567",p1,a1);
 			u1.setResidence_ref(r1);
-			Residents u2 = new Residents("Jack","+917891234567",p2,List.of(),a2);
+			Residents u2 = new Residents("Jack","+917891234567",p2,a2);
 			u2.setResidence_ref(r2);
-			Residents u3 = new Residents("Healy","+917891234567",p3,List.of(),a3);
+			Residents u3 = new Residents("Healy","+917891234567",p3,a3);
 			u3.setResidence_ref(r3);
-			Residents u4 = new Residents("Mitchell","+917891234567",p4,List.of(),a4);
+			Residents u4 = new Residents("Mitchell","+917891234567",p4,a4);
 			u4.setResidence_ref(r4);
 			residentRepo.saveAll(List.of(u1, u2, u3, u4));
 
@@ -96,6 +97,12 @@ public class SpringBackendApplication {
 			m2.setSupervisor_ref(s1);
 			managerRepo.saveAll(List.of(m1, m2));
 
+			Notice n1 = new Notice("Notice 1",LocalDate.now().toString());
+			Notice n2 = new Notice("Notice 2",LocalDate.now().toString());
+			Notice n3 = new Notice("Notice 3",LocalDate.now().toString());
+			Notice n4 = new Notice("Notice 4",LocalDate.now().toString());
+			noticeRepo.saveAll(List.of(n1,n2,n3,n4));
+			
 			Watchmen w1 = new Watchmen("Watchman1","+917891234567","Address");
 			w1.setManager_ref(m1);
 			w1.setTower_ref(t1);

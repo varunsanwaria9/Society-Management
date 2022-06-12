@@ -9,6 +9,8 @@ import com.example.SpringBackend.database.models.*;
 import com.example.SpringBackend.database.repos.*;
 import com.example.SpringBackend.services.ManagerService;
 import com.example.SpringBackend.services.ResidentService;
+import com.example.SpringBackend.services.SupervisorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +27,10 @@ public class AllController {
 
     @Autowired
     private ResidentService residentService;
-    
     @Autowired
     private ManagerService managerService;
+    @Autowired
+    private SupervisorService supervisorService;
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginModel loginModel) throws Exception {
@@ -44,7 +47,7 @@ public class AllController {
         else if(a1.getRoles() == AuthRole.MANAGER)
         	return new ResponseEntity<>( managerService.getManagerByEmail(loginModel.getEmail()).getManager_id() + " " + auth.get().getRoles().toString(),HttpStatus.OK);
         else if(a1.getRoles() == AuthRole.SUPERVISOR)
-        	return new ResponseEntity<>(HttpStatus.OK);
+        	return new ResponseEntity<>( supervisorService.getSupervisorByEmail(loginModel.getEmail()).getSupervisor_id() + " " + auth.get().getRoles().toString(),HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
@@ -65,7 +68,7 @@ public class AllController {
        Optional<Auth> auth = authRepo.findByEmail(registerModel.getEmail());
        if (auth.isPresent()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
        Auth auth1 = new Auth(registerModel.getEmail(), registerModel.getPassword(), AuthRole.RESIDENT);
-       Residents residents = new Residents(registerModel.getName(), registerModel.getPhone_no(), new Portfolio("NORMAL",1), List.of(),auth1);
+       Residents residents = new Residents(registerModel.getName(), registerModel.getPhone_no(), new Portfolio("NORMAL",1),auth1);
        return new ResponseEntity<>(residentService.addResidents(residents),HttpStatus.CREATED);
     }
 

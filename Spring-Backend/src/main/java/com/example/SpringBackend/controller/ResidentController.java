@@ -1,7 +1,11 @@
 package com.example.SpringBackend.controller;
 
+import com.example.SpringBackend.database.entities.Notice;
 import com.example.SpringBackend.database.entities.Residents;
+import com.example.SpringBackend.database.repos.NoticeRepo;
 import com.example.SpringBackend.services.ResidentService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +19,9 @@ public class ResidentController {
     
     @Autowired
     private ResidentService residentService;
-
+    @Autowired
+    private NoticeRepo noticeRepo;
+    
     
     @GetMapping("/findByEmail/{email}")
     public ResponseEntity<Residents> findByEmail(@PathVariable String email) {
@@ -37,4 +43,10 @@ public class ResidentController {
     	residentService.deleteResidents(id);
     	return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @GetMapping("/notice/all")
+    public ResponseEntity<List<Notice>> getAllNotices(){
+    	return new ResponseEntity<>(noticeRepo.findAll(),HttpStatus.OK);
+    }
+    
 }

@@ -23,6 +23,7 @@ export default function Login() {
 					window.location.href = "/managers";
 					break;
 				case "SUPERVISOR":
+					window.location.href = '/supervisors'
 					break;
 				default:
 					alert("Invalid user type");
@@ -36,6 +37,7 @@ export default function Login() {
 		if (email.trim() && password.trim()) {
 			AllApi.Login({email, password})
 				.then(res => {
+					// console.log(res);
 					if (res.status === 200) {
 						let temp = res.data.split(" ");
 						localStorage.setItem("token", res.data)
@@ -45,6 +47,9 @@ export default function Login() {
 								break;
 							case "MANAGER":
 								window.location.href = "/managers";
+								break;
+							case "SUPERVISOR":
+								window.location.href = '/supervisors';
 								break;
 							default:
 								alert("Invalid user type");

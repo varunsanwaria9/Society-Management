@@ -43,4 +43,8 @@ public class ResidentService {
     public List<Residents> getAllResidentsByTower(int towerId){
         return residentRepo.findByTowerId(towerId);
     }
+    
+    public List<Residents> searchResidents(String search){
+    	return residentRepo.serachResidents(search + "%");
+    }
 }

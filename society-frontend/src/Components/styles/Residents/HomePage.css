@@ -8,9 +8,26 @@
     width: 100vw;
     height: 90vh;
     background-color: lightgray;
+    display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .resident-home-msg{
     color: #3B3C36;
     font-size: 12vh;
     font-family: 'Water Brush', cursive;
 }
+
+.resident-home-notice{
+		width: 60vw;
+		height: 30vw;
+		padding: 1vh 1vw;
+		background-color: black;
+		border: 2vh solid sandybrown;
+		color: whitesmoke;
+		overflow-y: scroll;
+}
+.resident-home-notice::-webkit-scrollbar-track{
+		background-color: black;
+}
+
