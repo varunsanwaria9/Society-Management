@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import ResidentNavbar from "../ResidentNavbar";
-import '../../styles/Residents/Password.css';
+import ManagerNavbar from '../ManagerNavbar'
 import AllApi from "../../../services/AllApi";
 
-export default function ResidentProfilePassword() {
+export default function ManagerProfilePassword() {
 
 	const [pwd, setPwd] = useState({
 		oldPwd: "",
@@ -16,7 +15,7 @@ export default function ResidentProfilePassword() {
 		AllApi.updatePassword(pwd)
 			.then(res => {
 				if (res.status === 200) {
-					window.location.href = "/residents/profile";
+					window.location.href = "/managers/profile";
 				}
 				else {
 					alert("Some unknown error occured.")
@@ -28,8 +27,8 @@ export default function ResidentProfilePassword() {
 	}
 
 	return (
-		<div>
-			<ResidentNavbar />
+		<div className='manager-body'>
+			<ManagerNavbar />
 			<div className="residentpasswordbody">
 				<form className='w-50'>
 					<div className='form-group py-2'>

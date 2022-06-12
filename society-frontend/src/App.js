@@ -15,6 +15,7 @@ import ResidentComplainMain from './Components/Residents/Complains/Main';
 import ManagerHome from './Components/Managers/ManagerHome';
 import ManagerProfileMain from './Components/Managers/Profile/';
 import ManagerProfileUpdate from "./Components/Managers/Profile/UpdateProfile";
+import ManagerProfilePassword from './Components/Managers/Profile/Password';
 import ManagerComplainMain from "./Components/Managers/Complains/";
 import ManagerBillsMain from "./Components/Managers/Bills/";
 import ManagerStaffMain from './Components/Managers/Staffs/';
@@ -47,6 +48,7 @@ function App() {
 				<Route path='/managers' element={<ManagerHome />}></Route>
 				<Route path='/managers/profile' element={<ManagerProfileMain />}></Route>
 				<Route path='/managers/profile/update' element={<ManagerProfileUpdate />}></Route>
+				<Route path='/managers/profile/password' element={<ManagerProfilePassword />}></Route>
 				<Route path='/managers/complains' element={<ManagerComplainMain />}></Route>
 				<Route path='/managers/bills' element={<ManagerBillsMain />}></Route>
 				<Route path='/managers/staffs' element={<ManagerStaffMain />}></Route>
@@ -57,7 +59,7 @@ function App() {
 				<Route path='/supervisors/profile' element={<SupervisorProfileMain />}></Route>
 				<Route path='/supervisors/profile/update' element={<SupervisorProfileUpdate />}></Route>
 				<Route path='/supervisors/profile/password' element={<SupervisorProfilePassword />}></Route>
-				ute path='/supervisors/users' element={<SupervisorUserMain />}></Route>
+				<Route path='/supervisors/users' element={<SupervisorUserMain />}></Route>
 				<Route path='/supervisors/notice' element={<SupervisorNoticeMain />} ></Route>
 
 			</Routes>

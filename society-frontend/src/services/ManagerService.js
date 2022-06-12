@@ -4,7 +4,7 @@ const url = "http://localhost:8080/manager";
 
 const detailsById = () => {
 	let id = localStorage.getItem("token").split(" ")[0]
-	axios.get(`${url}/profile/get/${id}`)
+	return axios.get(`${url}/profile/get/${id}`)
 }
 
 const profileUpdate = val => {
