@@ -24,10 +24,25 @@ const searchResidents = value => {
 	return axios.get(`${url}/resident/search/${value}`)
 }
 
+const addNotice = notice => {
+	return axios.post(`${url}/notice/add`, notice)
+}
+
+const getAllNotices = () => {
+	return axios.get(`${url}/notice/all`)
+}
+
+const deleteNotice = id => {
+	return axios.delete(`${url}/notice/delete/${id}`)
+}
+
 export default {
 	getDetailsByEmail,
 	getDetailsById,
 	updateSupervisor,
 	getAllManagers,
-	searchResidents
+	searchResidents,
+	addNotice,
+	getAllNotices,
+	deleteNotice
 } 

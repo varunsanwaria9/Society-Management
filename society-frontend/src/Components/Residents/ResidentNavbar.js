@@ -1,15 +1,15 @@
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 import '../styles/Residents/Navbar.css';
 
 export default function ResidentNavbar() {
 
-    useEffect(() => {
-        if(localStorage.getItem("token") !== null) {
-				let role = localStorage.getItem('token').split(" ")[1]
-				if(role !== "RESIDENT"){
-					window.location.href = `/${role.toLowerCase()}s/`
-				}
+	useEffect(() => {
+		if (localStorage.getItem("token") !== null) {
+			let role = localStorage.getItem('token').split(" ")[1]
+			if (role !== "RESIDENT") {
+				window.location.href = `/${role.toLowerCase()}s/`
+			}
 		}
 		else {
 			window.location.href = '/login'

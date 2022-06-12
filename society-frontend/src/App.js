@@ -23,6 +23,9 @@ import SupervisorHome from './Components/Supervisor/SupervisorHome';
 import SupervisorManager from "./Components/Supervisor/Managers/";
 import SupervisorProfileMain from './Components/Supervisor/Profile/';
 import SupervisorUserMain from './Components/Supervisor/Users/'
+import SupervisorNoticeMain from './Components/Supervisor/Notice/'
+import SupervisorProfileUpdate from './Components/Supervisor/Profile/Update';
+import SupervisorProfilePassword from './Components/Supervisor/Profile/Password'; 
 
 function App() {
 	return (
@@ -52,7 +55,10 @@ function App() {
 				<Route path='/supervisors' element={<SupervisorHome />}></Route>
 				<Route path='/supervisors/manager' element={<SupervisorManager />}></Route>
 				<Route path='/supervisors/profile' element={<SupervisorProfileMain />}></Route>
-				<Route path='/supervisors/users' element={<SupervisorUserMain />}></Route>
+				<Route path='/supervisors/profile/update' element={<SupervisorProfileUpdate />}></Route>
+				<Route path='/supervisors/profile/password' element={<SupervisorProfilePassword />}></Route>
+				ute path='/supervisors/users' element={<SupervisorUserMain />}></Route>
+				<Route path='/supervisors/notice' element={<SupervisorNoticeMain />} ></Route>
 
 			</Routes>
 		</Router>

@@ -7,8 +7,8 @@ export default function complainAddModel(props) {
 
 	const onSubmit = () => {
 		ComplainService.addComplain({
-				value:props.resp.current.value,
-				ref: localStorage.getItem('token').split(' ')[0]
+			value: props.resp.current.value,
+			ref: localStorage.getItem('token').split(' ')[0]
 		})
 			.then(res => {
 				if (res.status == 201) {

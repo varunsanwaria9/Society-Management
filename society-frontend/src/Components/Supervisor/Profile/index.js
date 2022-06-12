@@ -7,6 +7,8 @@ export default function SupervisorProfileMain() {
 	const [profile, setProfile] = useState({})
 	const [auth, setAuth] = useState({})
 
+	const handleRoute = val => window.location.href = val
+
 	useEffect(() => {
 		SupervisorService.getDetailsById()
 			.then(res => {
@@ -26,7 +28,7 @@ export default function SupervisorProfileMain() {
 			<SupervisorNavbar />
 			<div className='residentProfileBody'>
 				<div className='residentProfileBodyLeft'>
-					<button className='btn btn-primary w-25 my-2'>Update Profile</button>
+					<button className='btn btn-primary w-25 my-2' onClick={() => handleRoute('/supervisors/profile/update')}>Update Profile</button>
 					<button className='btn btn-primary w-25 my-2'>Update Password</button>
 					<button className='btn btn-danger w-25 my-2'>Delete Profile</button>
 				</div>

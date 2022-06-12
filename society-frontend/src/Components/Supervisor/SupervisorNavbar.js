@@ -21,10 +21,10 @@ export default function SupervisorNavbar() {
 						<button className="navBtn">Home</button>
 					</li>
 					<li className="nav-item">
-						<button className="navBtn">Committes</button>
+						<button className="navBtn" onClick={() => handleRoute('/supervisors/notice')}>Notice</button>
 					</li>
 					<li className="nav-item">
-						<button className="navBtn">Users</button>
+						<button className="navBtn" onClick={() => handleRoute('/supervisors/users')}>Users</button>
 					</li>
 					<li className='nav-item'>
 						<button className='navBtn' onClick={() => handleRoute('/supervisors/manager')}>Managers</button>

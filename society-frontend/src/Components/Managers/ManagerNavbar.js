@@ -17,28 +17,29 @@ export default function ManagerNavbar() {
 				<span className="navbar-toggler-icon"></span>
 			</button>
 
-			<div className="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul className="navbar-nav mr-auto">
+			<div className="collapse navbar-collapse" id="navbarNav">
+				<ul className="navbar-nav">
 					<li className="nav-item">
-						<button className="nav-btn" onClick={() => handleRoute('/managers/')}>Home</button>
+						<button className="navBtn" onClick={() => handleRoute('/managers/')}>Home</button>
 					</li>
 					<li className="nav-item">
-						<button className="nav-btn" onClick={() => handleRoute('/managers/complains')}>Complains</button>
+						<button className="navBtn" onClick={() => handleRoute('/managers/complains')}>Complains</button>
 					</li>
 					<li className="nav-item">
-						<button className="nav-btn" onClick={() => handleRoute('/managers/bills')}>Bills</button>
+						<button className="navBtn" onClick={() => handleRoute('/managers/bills')}>Bills</button>
+					</li>
+					<li>
+						<button className="navBtn" onClick={() => handleRoute('/managers/staffs')}>Staffs</button>
 					</li>
 					<li className="nav-item">
-						<button className="nav-btn" onClick={() => handleRoute('/managers/staffs')}>Staffs</button>
+						<button className="navBtn" onClick={() => handleRoute('/managers/profile')}>Profile</button>
 					</li>
 					<li className="nav-item">
-						<button className="nav-btn" onClick={() => handleRoute('/managers/profile')}>Profile</button>
-					</li>
-					<li className="nav-item">
-						<button className="nav-btn" onClick={doLogout}>Logout</button>
+						<button className="navBtn" onClick={() => doLogout()}>Logout</button>
 					</li>
 				</ul>
 			</div>
+
 		</nav>
 	)
 }
