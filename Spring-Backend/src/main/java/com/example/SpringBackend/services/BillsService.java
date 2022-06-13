@@ -3,6 +3,7 @@ package com.example.SpringBackend.services;
 import com.example.SpringBackend.database.entities.Bills;
 import com.example.SpringBackend.database.entities.Residences;
 import com.example.SpringBackend.database.entities.Residents;
+import com.example.SpringBackend.database.enums.BillStage;
 import com.example.SpringBackend.database.models.BillDateModel;
 import com.example.SpringBackend.database.repos.BillRepo;
 import com.example.SpringBackend.database.repos.ResidenceRepo;
@@ -10,6 +11,7 @@ import com.example.SpringBackend.database.repos.ResidentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,4 +47,14 @@ public class BillsService {
     public List<Bills> allGeneratedBills(){
     	return billRepo.allGeneratedBills();
     }
+    
+    public Bills makeBillPaid(String id) {
+    	Optional<Bills> tempBills = billRepo.findById(id);
+    	if(tempBills.isEmpty()) return null;
+    	Bills bill = tempBills.get();
+    	bill.setStatus(BillStage.PAID);
+    	bill.setPaid_on(LocalDate.now().toString());
+    	return billRepo.save(bill);
+    }
+    
 }

@@ -1,0 +1,17 @@
+.payment-card{
+		margin: 10vh 2vw 3vh;
+		padding: 2vh 2vw;
+		width: 40vw;
+		background-color: white;
+		backdrop-filter: blur(2px);
+}
+.payment-sidebox{
+		height: fit-content;
+		margin: 10vh 2vw 3vh;
+		padding: 2vh 3vw 2.5vh;
+		background-color: white;
+		backdrop-filter: blur(2px);
+}
+.bold{
+		font-weight: bold;
+}

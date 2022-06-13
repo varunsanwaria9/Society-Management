@@ -9,7 +9,6 @@ export default function RegisterProfilePage() {
 	const [auth, setAuth] = useState({});
 	const [portfolio, setPortfolio] = useState({});
 	const [residence, setResidence] = useState({});
-	const [committee, setCommittee] = useState([]);
 
 	useEffect(() => {
 		ResidentService.detailsById()
@@ -18,7 +17,6 @@ export default function RegisterProfilePage() {
 				setAuth(response.data.auth);
 				setPortfolio(response.data.portfolio);
 				setResidence(response.data.residence_ref);
-				setCommittee(response.data.committee);
 			})
 			.catch(e => {
 				console.log(e);
@@ -54,13 +52,6 @@ export default function RegisterProfilePage() {
 					<p className="residentProfileBodyP">Phone <span>:{resident.phone_no}</span></p>
 					<p className="residentProfileBodyP">Portfolio<span>:{portfolio.post}</span></p>
 					<p className="residentProfileBodyP">Flat No <span>:{residence.flat_no}</span></p>
-					<p className="residentProfileBodyP">Committes <span>
-						{
-							committee.length === 0 ?
-								"Not Yet In Any" :
-								<button className='btn btn-info'>Show Committes</button>
-						}
-					</span></p>
 				</div>
 			</div>
 		</div>

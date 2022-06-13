@@ -2,3 +2,16 @@
   width: 100vw;
   height: 100vh;
 }
+.w-100{
+		width: 100vw;
+}
+.w-75{
+		width: 75vw;
+}
+.mx-2{
+		margin-left: 2vw;
+		margin-right: 2vw;
+}
+.underline{
+		text-decoration: underline;
+}

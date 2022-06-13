@@ -36,8 +36,11 @@ export default function ManagerStaffMain() {
 	return (
 		<div className='manager-staff-body'>
 			<ManagerNavbar />
-			<div>
-				<p>Watchmen</p>
+			<div className='my-2 px-4'>
+				<div className='my-2 d-flex justify-content-around'>
+					<p className='bold underline'>Watchmen</p>
+					<button className='btn btn-primary'>Add Watchman</button>
+				</div>
 				<table className="table table-striped table-dark">
 					<thead className='thead-dark'>
 						<tr>
@@ -73,8 +76,11 @@ export default function ManagerStaffMain() {
 					</tbody>
 				</table>
 			</div>
-			<div>
-				<p>Workers</p>
+			<div className='my-2 px-4'>
+				<div className='d-flex justify-content-around my-2'>
+					<p className='bold underline'>Workers</p>
+					<button className='btn btn-primary'>Add Workers</button>
+				</div>
 				<table className="table table-striped table-dark">
 					<thead className='thead-dark w-75'>
 						<tr>

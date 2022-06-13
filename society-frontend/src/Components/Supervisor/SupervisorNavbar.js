@@ -18,7 +18,7 @@ export default function SupervisorNavbar() {
 			<div className="collapse navbar-collapse" id="navbarNav">
 				<ul className="navbar-nav">
 					<li className="nav-item">
-						<button className="navBtn">Home</button>
+						<button className="navBtn" onClick={() => handleRoute('/supervisors/')}>Home</button>
 					</li>
 					<li className="nav-item">
 						<button className="navBtn" onClick={() => handleRoute('/supervisors/notice')}>Notice</button>

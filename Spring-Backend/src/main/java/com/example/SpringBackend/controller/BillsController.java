@@ -61,4 +61,11 @@ public class BillsController {
     public ResponseEntity<List<Bills>> allGeneratedBill(){
     	return new ResponseEntity<>(billsService.allGeneratedBills(),HttpStatus.OK);
     }
+    
+    @PutMapping("/paid/{id}")
+    public ResponseEntity<Bills> makeBillsPaid(@PathVariable String id){
+    	Bills bill = billsService.makeBillPaid(id);
+    	if(bill == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	return new ResponseEntity<>(bill,HttpStatus.CREATED);
+    }
 }

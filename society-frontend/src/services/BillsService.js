@@ -22,10 +22,15 @@ const allGeneratedBills = () => {
 	return axios.get(`${baseUrl}/generated`)
 }
 
+const makeBillsPaid = (id) => {
+	return axios.put(`${baseUrl}/paid/${id}`)
+}
+
 export default {
 	addBill,
 	getBillsById,
 	getBillsByGenerated,
 	getBillsBetnDates,
-	allGeneratedBills
+	allGeneratedBills,
+	makeBillsPaid
 }

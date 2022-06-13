@@ -6,22 +6,22 @@ source: https://sketchfab.com/3d-models/person-bcd49ca3bcfb43739fd90a8dbfcf5319
 title: Person
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, {useRef} from 'react'
+import {useGLTF} from '@react-three/drei'
 
-export default function Model({ ...props }) {
-  const group = useRef()
-  const { nodes, materials } = useGLTF('/person1.gltf')
-  return (
-    <group ref={group} {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0 ,  -0.6]} position={[1.7,0.1,3.2]}>
-        <mesh geometry={nodes.Object_2.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_3.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_4.geometry} material={materials.material_0} />
-        <mesh geometry={nodes.Object_5.geometry} material={materials.material_0} />
-      </group>
-    </group>
-  )
+export default function Model({...props}) {
+	const group = useRef()
+	const {nodes, materials} = useGLTF('/person1.gltf')
+	return (
+		<group ref={group} {...props} dispose={null}>
+			<group rotation={[-Math.PI / 2, 0, 0.5]} position={[-1, 0.1, 3]}>
+				<mesh geometry={nodes.Object_2.geometry} material={materials.material_0} />
+				<mesh geometry={nodes.Object_3.geometry} material={materials.material_0} />
+				<mesh geometry={nodes.Object_4.geometry} material={materials.material_0} />
+				<mesh geometry={nodes.Object_5.geometry} material={materials.material_0} />
+			</group>
+		</group>
+	)
 }
 
 useGLTF.preload('/person1.gltf')

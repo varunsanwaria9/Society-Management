@@ -6,20 +6,20 @@ source: https://sketchfab.com/3d-models/hendrick-kganyago-business-coaching-ba53
 title: Hendrick Kganyago Business Coaching
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, {useRef} from 'react'
+import {useGLTF} from '@react-three/drei'
 
-export default function Model({ ...props }) {
-  const group = useRef()
-  const { nodes, materials } = useGLTF('/admin.gltf')
-  return (
-    <group ref={group} {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, -0.2]} position={[1.7,-30.1,-13.2]}>
-        <mesh geometry={nodes.Object_2.geometry} material={materials.GTP_BMan_Jack_07_Stg_Lsn_Adl_Ccs_Gry_Mgr_BlendMaterial} />
-        <mesh geometry={nodes.Object_3.geometry} material={materials.GTP_BMan_Jack_07_Stg_Lsn_Adl_Ccs_Gry_Mgr_BlendMaterial} />
-      </group>
-    </group>
-  )
+export default function Model({...props}) {
+	const group = useRef()
+	const {nodes, materials} = useGLTF('/admin.gltf')
+	return (
+		<group ref={group} {...props} dispose={null}>
+			<group rotation={[-Math.PI / 2, 0, -0.2]} position={[-71.7, -70.1, -160.2]}>
+				<mesh geometry={nodes.Object_2.geometry} material={materials.GTP_BMan_Jack_07_Stg_Lsn_Adl_Ccs_Gry_Mgr_BlendMaterial} />
+				<mesh geometry={nodes.Object_3.geometry} material={materials.GTP_BMan_Jack_07_Stg_Lsn_Adl_Ccs_Gry_Mgr_BlendMaterial} />
+			</group>
+		</group>
+	)
 }
 
 useGLTF.preload('/admin.gltf')

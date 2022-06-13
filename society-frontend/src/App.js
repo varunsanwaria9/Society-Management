@@ -11,6 +11,7 @@ import ResidentProfilePassword from './Components/Residents/Profile/Password';
 import ResidentProfileUpdate from './Components/Residents/Profile/Update';
 import ResidentBillPage from './Components/Residents/Bills/IndexPage';
 import ResidentComplainMain from './Components/Residents/Complains/Main';
+import ResidentBillPayment from './Components/Residents/Bills/PaymentPage'
 
 import ManagerHome from './Components/Managers/ManagerHome';
 import ManagerProfileMain from './Components/Managers/Profile/';
@@ -26,7 +27,7 @@ import SupervisorProfileMain from './Components/Supervisor/Profile/';
 import SupervisorUserMain from './Components/Supervisor/Users/'
 import SupervisorNoticeMain from './Components/Supervisor/Notice/'
 import SupervisorProfileUpdate from './Components/Supervisor/Profile/Update';
-import SupervisorProfilePassword from './Components/Supervisor/Profile/Password'; 
+import SupervisorProfilePassword from './Components/Supervisor/Profile/Password';
 
 function App() {
 	return (
@@ -42,6 +43,7 @@ function App() {
 				<Route path='/residents/profile/password' element={<ResidentProfilePassword />}></Route>
 				<Route path='/residents/profile/update' element={<ResidentProfileUpdate />}></Route>
 				<Route path='/residents/bills' element={<ResidentBillPage />}></Route>
+				<Route path='/residents/payment/:id' element={<ResidentBillPayment />}></Route>
 				<Route path='/residents/complains' element={<ResidentComplainMain />}></Route>
 
 				{/* Managers */}
